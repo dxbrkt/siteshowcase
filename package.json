@@ -1,0 +1,26 @@
+{
+  "name": "classicag-website",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --host 127.0.0.1 --port 3000",
+    "start": "npm run dev",
+    "build": "astro build",
+    "preview": "astro preview --host 127.0.0.1 --port 3000",
+    "check": "astro check",
+    "format": "prettier --write src astro.config.mjs"
+  },
+  "dependencies": {
+    "astro": "^7.4.13"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.9.3",
+    "prettier": "^3.6.2",
+    "prettier-plugin-astro": "^0.14.1"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

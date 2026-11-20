@@ -1,0 +1,85 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/urls';
+import FinalCta from '../components/FinalCta.astro';
+import { PORTFOLIO_ITEMS } from '../data/portfolio';
+---
+
+<BaseLayout
+  title={'Наши работы — фотогалерея объектов | Классика-АГ'}
+  description={'Фотографии реальных объектов клининговой компании ООО «Классика-АГ» в Москве: уборка помещений, территории и фасадов.'}
+  activeNav={'nashi-raboty'}
+>
+  <div class="page-header page-header--photo">
+    <img
+      src={withBase('/assets/images/works/work-15.jpg')}
+      alt=""
+      class="page-header__bg"
+    />
+    <div class="page-header__overlay"></div>
+    <div class="page-header__inner">
+      <h1 class="page-header__title">Наши работы</h1>
+      <p class="page-header__subtitle">
+        Фотографии из портфолио компании «Классика-АГ».
+      </p>
+    </div>
+  </div>
+
+  <section class="clean-section">
+    <div class="clean-section__inner">
+      <div
+        class="filter-pills fade-up"
+        role="tablist"
+        aria-label="Рубрики портфолио"
+      >
+        <button type="button" class="filter-pill is-active" data-filter="all"
+          >Все объекты ({PORTFOLIO_ITEMS.length})</button
+        >
+        <button type="button" class="filter-pill" data-filter="office"
+          >Офисы и бизнес-центры</button
+        >
+        <button type="button" class="filter-pill" data-filter="mall"
+          >Торговые центры и выставки</button
+        >
+        <button type="button" class="filter-pill" data-filter="facade"
+          >Фасады и промальп</button
+        >
+        <button type="button" class="filter-pill" data-filter="special"
+          >Технопарк</button
+        >
+      </div>
+
+      <div class="photo-grid js-filter-grid fade-up">
+        {
+          PORTFOLIO_ITEMS.map((item) => (
+            <>
+              <figure
+                class="photo-card js-lightbox-item"
+                data-category={item.cat}
+                data-src={withBase(item.src)}
+                data-caption={`${item.title} — ${item.sub}`}
+                tabindex="0"
+                role="button"
+              >
+                <div class="photo-card__img">
+                  <img src={withBase(item.src)} alt={item.title} />
+                </div>
+                <figcaption class="photo-card__cap">
+                  <strong>{item.title}</strong>
+                  <span>{item.sub}</span>
+                </figcaption>
+              </figure>
+            </>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <FinalCta photoSrc={'/assets/images/works/work-13.jpg'} />
+</BaseLayout>
+
+<script>
+  import { initGallery } from '../scripts/gallery';
+  initGallery();
+</script>

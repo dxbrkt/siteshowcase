@@ -1,0 +1,91 @@
+---
+import { withBase } from '../lib/urls';
+interface Props {
+  dark?: boolean;
+}
+const { dark = false } = Astro.props;
+---
+
+{
+  dark ? (
+    <>
+      <span
+        class="brand-logo brand-logo--reverse"
+        role="img"
+        aria-label="Классика-АГ"
+      >
+        <svg
+          class="brand-logo__symbol"
+          viewBox="347 156 400 322"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <defs>
+            <filter id="footer-ink" color-interpolation-filters="sRGB">
+              <feColorMatrix
+                type="matrix"
+                values="0 0 0 0 .76 0 0 0 0 .86 0 0 0 0 .62 -.2126 -.7152 -.0722 0 1"
+              />
+            </filter>
+          </defs>
+          <image
+            href={withBase('/assets/images/brand-lettering.png')}
+            width="1096"
+            height="676"
+            filter="url(#footer-ink)"
+          />
+        </svg>
+        <svg
+          class="brand-logo__name"
+          viewBox="112 565 924 52"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <defs>
+            <filter id="footer-lettering" color-interpolation-filters="sRGB">
+              <feColorMatrix
+                type="matrix"
+                values="0 0 0 0 .95 0 0 0 0 .96 0 0 0 0 .91 -.2126 -.7152 -.0722 0 1"
+              />
+            </filter>
+          </defs>
+          <image
+            href={withBase('/assets/images/brand-lettering.png')}
+            width="1096"
+            height="676"
+            filter="url(#footer-lettering)"
+          />
+        </svg>
+      </span>
+    </>
+  ) : (
+    <>
+      <span class="brand-logo" role="img" aria-label="Классика-АГ">
+        <svg
+          class="brand-logo__symbol"
+          viewBox="347 156 400 322"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <image
+            href={withBase('/assets/images/brand-lettering.png')}
+            width="1096"
+            height="676"
+          />
+        </svg>
+        <svg
+          class="brand-logo__name"
+          viewBox="112 565 924 52"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <image
+            href={withBase('/assets/images/brand-lettering.png')}
+            width="1096"
+            height="676"
+          />
+        </svg>
+      </span>
+    </>
+  )
+}

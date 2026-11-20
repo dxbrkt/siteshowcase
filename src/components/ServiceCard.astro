@@ -1,0 +1,29 @@
+---
+import { withBase } from '../lib/urls';
+import { CALM_BADGES } from '../data/service-labels';
+import type { Service } from '../data/services';
+interface Props {
+  service: Service;
+}
+const { service: s } = Astro.props;
+const badge = CALM_BADGES[s.slug] || 'Клининг';
+---
+
+<div class="fade-up">
+  <article class="service-card">
+    <div class="service-card__photo">
+      <img src={withBase(s.cardImage)} alt={s.title} />
+      <div class="service-card__gradient"></div>
+      <div class="service-card__body">
+        <span class="service-card__badge">{badge}</span>
+        <h3 class="service-card__title">{s.title}</h3>
+        <p class="service-card__desc">{s.shortDesc}</p>
+      </div>
+    </div>
+    <div class="service-card__footer">
+      <a class="service-card__btn" href={withBase(`/uslugi/${s.slug}/`)}
+        >Подробнее</a
+      >
+    </div>
+  </article>
+</div>

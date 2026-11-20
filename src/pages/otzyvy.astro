@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/urls';
+import FinalCta from '../components/FinalCta.astro';
+import { REVIEWS } from '../data/reviews';
+---
+
+<BaseLayout
+  title={'Отзывы и благодарственные письма клиентов | Классика-АГ'}
+  description={'Оригиналы благодарственных писем клиентов ООО «Классика-АГ»: АО «Русатом Оверсиз», АО «Оборонэнерго», РАН, ТД «Гослото», БЦ «ПРЕО 8», Marvel.'}
+  activeNav={'otzyvy'}
+>
+  <div class="page-header">
+    <div class="page-header__inner">
+      <div class="page-header__crumb">
+        <a href={withBase('/')}>Главная</a>
+        <span>/</span>
+        <a href={withBase('/o-kompanii/')}>О компании</a>
+      </div>
+      <h1 class="page-header__title">Благодарственные письма</h1>
+      <p class="page-header__subtitle">
+        Рекомендации наших корпоративных и государственных заказчиков на
+        официальных бланках организаций. Нажмите на документ, чтобы увеличить
+        скан.
+      </p>
+    </div>
+  </div>
+
+  <section class="clean-section">
+    <div class="clean-section__inner">
+      <div class="letters-grid fade-up">
+        {
+          REVIEWS.map((r) => (
+            <>
+              <article class="letter-card">
+                <div
+                  class="letter-card__scan js-lightbox-item"
+                  data-src={withBase(r.src)}
+                  data-caption={`${r.org} — ${r.role}`}
+                  tabindex="0"
+                  role="button"
+                >
+                  <img src={withBase(r.src)} alt={`Отзыв ${r.org}`} />
+                </div>
+                <div>
+                  <h2 class="letter-card__org">{r.org}</h2>
+                  <div class="letter-card__role">{r.role}</div>
+                  <blockquote class="letter-card__quote">{r.quote}</blockquote>
+                </div>
+              </article>
+            </>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <FinalCta photoSrc={'/assets/images/old-services/office-1.jpg'} />
+</BaseLayout>

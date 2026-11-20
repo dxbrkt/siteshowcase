@@ -1,0 +1,142 @@
+---
+import { withBase } from '../lib/urls';
+import BrandLogo from '../components/BrandLogo.astro';
+---
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div class="footer__col footer__col--brand">
+      <a class="footer__brand" href={withBase('/')}>
+        <BrandLogo dark />
+      </a>
+      <p class="footer__tagline">
+        Профессиональная уборка офисов, бизнес-центров, торговых площадей,
+        производственных объектов и жилой недвижимости в Москве и области.
+      </p>
+      <div class="footer__badges">
+        <span class="footer__badge">ISO 9001</span>
+        <span class="footer__badge">ГОСТ Р 51870</span>
+        <span class="footer__badge footer__badge--eco">Эко-средства</span>
+      </div>
+    </div>
+
+    <div class="footer__col">
+      <h3 class="footer__heading">Услуги</h3>
+      <ul class="footer__list">
+        <li>
+          <a class="footer__link" href={withBase('/uslugi/uborka-ofisov/')}
+            >Уборка офисов</a
+          >
+        </li>
+        <li>
+          <a class="footer__link" href={withBase('/uslugi/uborka-pomeshenij/')}
+            >Бизнес-центры и ТЦ</a
+          >
+        </li>
+        <li>
+          <a class="footer__link" href={withBase('/uslugi/uhod-za-polami/')}
+            >Уход за твёрдыми полами</a
+          >
+        </li>
+        <li>
+          <a
+            class="footer__link"
+            href={withBase('/uslugi/mojka-okon-i-fasadov/')}
+            >Мойка окон и фасадов</a
+          >
+        </li>
+        <li>
+          <a class="footer__link" href={withBase('/uslugi/vysotnye-raboty/')}
+            >Промышленный альпинизм</a
+          >
+        </li>
+        <li>
+          <a
+            class="footer__link"
+            href={withBase('/uslugi/uborka-posle-remonta/')}
+            >Уборка после ремонта</a
+          >
+        </li>
+        <li>
+          <a
+            class="footer__link"
+            href={withBase('/uslugi/gryazezashchitnye-kovry/')}
+            >Грязезащитные ковры</a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer__col">
+      <h3 class="footer__heading">Компания</h3>
+      <ul class="footer__list">
+        <li>
+          <a class="footer__link" href={withBase('/o-kompanii/')}>О компании</a>
+        </li>
+        <li>
+          <a class="footer__link" href={withBase('/ceny/')}
+            >Цены и калькулятор</a
+          >
+        </li>
+        <li>
+          <a class="footer__link" href={withBase('/nashi-raboty/')}
+            >Наши работы</a
+          >
+        </li>
+        <li>
+          <a class="footer__link" href={withBase('/sertifikaty/')}
+            >Сертификаты ГОСТ и ISO</a
+          >
+        </li>
+        <li>
+          <a class="footer__link" href={withBase('/otzyvy/')}
+            >Благодарственные письма</a
+          >
+        </li>
+        <li>
+          <a class="footer__link" href={withBase('/klientam/')}
+            >Оплата и частые вопросы</a
+          >
+        </li>
+        <li>
+          <a class="footer__link" href={withBase('/kontakty/')}>Контакты</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer__col footer__col--contacts">
+      <h3 class="footer__heading">Контакты</h3>
+      <ul class="footer__list">
+        <li>
+          <a class="footer__link" href="tel:+74959337496">+7 (495) 933-74-96</a>
+        </li>
+        <li>
+          <a class="footer__link" href="mailto:info@classicag.ru"
+            >info@classicag.ru</a
+          >
+        </li>
+        <li>Москва, ул. Вольная, д. 39, стр. 8</li>
+        <li>Алтуфьевское ш., д. 44, БЦ «АЛЬТЕЗА»</li>
+        <li class="footer__hours">
+          Офис: Пн–Пт 09:00–18:00<br />Бригады: 24/7
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer__bottom">
+    <p>&copy; ООО «Классика-АГ» (ИНН 7729687715). Все права защищены.</p>
+    <div class="footer__legal-links">
+      <a class="footer__link" href={withBase('/klientam/#quality')}
+        >Политика качества</a
+      >
+      <span>·</span>
+      <a
+        class="footer__link"
+        href="https://vk.com/classicaag"
+        target="_blank"
+        rel="noopener noreferrer">ВКонтакте</a
+      >
+    </div>
+  </div>
+</footer>

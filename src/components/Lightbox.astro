@@ -1,0 +1,33 @@
+<!-- Lightbox -->
+<div
+  class="lightbox"
+  id="lightbox"
+  hidden
+  aria-hidden="true"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Просмотр изображения"
+>
+  <button
+    type="button"
+    class="lightbox__close"
+    id="lightboxClose"
+    aria-label="Закрыть">&times;</button
+  >
+  <button
+    type="button"
+    class="lightbox__nav lightbox__prev"
+    id="lightboxPrev"
+    aria-label="Назад">&#8592;</button
+  >
+  <figure class="lightbox__figure">
+    <img src="" alt="" id="lightboxImg" class="lightbox__img" />
+    <figcaption id="lightboxCaption" class="lightbox__caption"></figcaption>
+  </figure>
+  <button
+    type="button"
+    class="lightbox__nav lightbox__next"
+    id="lightboxNext"
+    aria-label="Вперёд">&#8594;</button
+  >
+</div>

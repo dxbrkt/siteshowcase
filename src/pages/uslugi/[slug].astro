@@ -1,0 +1,208 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../lib/urls';
+import FinalCta from '../../components/FinalCta.astro';
+import ServiceCard from '../../components/ServiceCard.astro';
+import Icon from '../../components/Icon.astro';
+import { SERVICES } from '../../data/services';
+import type { GetStaticPaths } from 'astro';
+import type { Service } from '../../data/services';
+export const getStaticPaths = (() =>
+  SERVICES.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }))) satisfies GetStaticPaths;
+interface Props {
+  service: Service;
+}
+const { service } = Astro.props;
+const related = SERVICES.filter((s) => s.slug !== service.slug).slice(0, 3);
+---
+
+<BaseLayout
+  title={`${service.title} в Москве — ${service.minPrice} | Классика-АГ`}
+  description={`${service.title} от ООО «Классика-АГ»: ${service.shortDesc}`}
+  activeNav={'uslugi'}
+>
+  <div class="page-header page-header--photo">
+    <img src={withBase(service.heroImage)} alt="" class="page-header__bg" />
+    <div class="page-header__overlay"></div>
+    <div class="page-header__inner">
+      <div class="page-header__crumb">
+        <a href={withBase('/')}>Главная</a>
+        <span>/</span>
+        <a href={withBase('/uslugi/')}>Услуги</a>
+      </div>
+      <h1 class="page-header__title">{service.title}</h1>
+      <p class="page-header__subtitle">{service.lead}</p>
+    </div>
+  </div>
+
+  <section class="service-detail">
+    <div class="service-detail__inner">
+      <div class="fade-up service-detail__content">
+        <span class="service-detail__price"
+          >Базовый тариф: {service.minPrice}</span
+        >
+        <h2 class="service-detail__title">Как мы работаем на объекте</h2>
+        {
+          service.paragraphs.map((p) => (
+            <>
+              <p class="service-detail__desc">{p}</p>
+            </>
+          ))
+        }
+        <ul class="service-detail__features">
+          {
+            service.checklist.map((feat) => (
+              <>
+                <li class="service-detail__feature">
+                  <span class="perk-check">
+                    <span class="svg-icon">
+                      <Icon name="check" />
+                    </span>
+                  </span>
+                  <span>{feat}</span>
+                </li>
+              </>
+            ))
+          }
+        </ul>
+        <div class="service-detail__actions">
+          <a
+            class="button button--cta"
+            href={withBase(
+              `/kontakty/?service=${encodeURIComponent(service.slug)}#estimate`,
+            )}
+          >
+            <span class="button__label">Рассчитать мой объект</span>
+          </a>
+          <a class="button button--outline" href="#prices">
+            <span class="button__label">Прайс-лист</span>
+          </a>
+        </div>
+      </div>
+      <div class="fade-up service-detail__image-wrap">
+        <img src={withBase(service.cardImage)} alt={service.title} />
+      </div>
+    </div>
+  </section>
+
+  <section class="clean-section clean-section--alt">
+    <div class="clean-section__inner">
+      <div class="clean-section__head fade-up">
+        <div>
+          <h2 class="section-heading">Форматы обслуживания</h2>
+          <p class="section-sub">
+            Подбираем разовый выезд или регулярный график под задачи вашего
+            помещения.
+          </p>
+        </div>
+      </div>
+      <div class="subcards-grid fade-up">
+        {
+          service.subServices.map((sub) => (
+            <>
+              <article class="subcard">
+                <div class="subcard__top">
+                  <h3 class="subcard__title">{sub.title}</h3>
+                  <span class="subcard__price">{sub.price}</span>
+                </div>
+                <p class="subcard__desc">{sub.desc}</p>
+              </article>
+            </>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="clean-section" id="prices">
+    <div class="clean-section__inner">
+      <div class="clean-section__head fade-up">
+        <div>
+          <h2 class="section-heading">Тарифы на работы</h2>
+          <p class="section-sub">
+            Точная ставка фиксируется в договоре после согласования площади и
+            периодичности.
+          </p>
+        </div>
+        <a class="clean-link" href={withBase('/ceny/#calculator')}
+          >Открыть калькулятор сметы &rarr;</a
+        >
+      </div>
+
+      <div class="clean-table-wrap fade-up">
+        <table class="clean-table">
+          <thead>
+            <tr>
+              <th>Вид работ</th>
+              <th>Ед. изм.</th>
+              <th>Стоимость</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              service.prices.map((row) => (
+                <>
+                  <tr>
+                    <td>{row[0]}</td>
+                    <td>{row[1]}</td>
+                    <td class="clean-table__price">{row[2]}</td>
+                  </tr>
+                </>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="clean-section clean-section--alt">
+    <div class="clean-section__inner">
+      <div class="clean-section__head fade-up">
+        <h2 class="section-heading">Фотографии наших работ</h2>
+        <a class="clean-link" href={withBase('/nashi-raboty/')}
+          >Вся фотогалерея &rarr;</a
+        >
+      </div>
+      <div class="photo-grid fade-up">
+        {
+          service.gallery.slice(0, 3).map((img) => (
+            <>
+              <figure
+                class="photo-card js-lightbox-item"
+                data-src={withBase(img.src)}
+                data-caption={img.caption}
+                tabindex="0"
+                role="button"
+              >
+                <div class="photo-card__img">
+                  <img src={withBase(img.src)} alt={img.caption} />
+                </div>
+                <figcaption class="photo-card__cap">
+                  <span>{img.caption}</span>
+                </figcaption>
+              </figure>
+            </>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="services-grid">
+    <div class="services-grid__inner">
+      <div class="clean-section__head fade-up">
+        <h2 class="section-heading">Другие направления</h2>
+        <a class="clean-link" href={withBase('/uslugi/')}>Все услуги &rarr;</a>
+      </div>
+      <div class="services-grid__cards">
+        {related.map((service) => <ServiceCard service={service} />)}
+      </div>
+    </div>
+  </section>
+
+  <FinalCta photoSrc={service.heroImage} serviceQuery={service.slug} />
+</BaseLayout>

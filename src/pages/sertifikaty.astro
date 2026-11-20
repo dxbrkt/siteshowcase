@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/urls';
+import FinalCta from '../components/FinalCta.astro';
+import { CERTIFICATES } from '../data/certificates';
+---
+
+<BaseLayout
+  title={'Сертификаты ГОСТ Р 51870 и ISO 9001 | Классика-АГ'}
+  description={'Опубликованные документы компании ООО «Классика-АГ»: ГОСТ Р 51870–2002, ISO 9001, ISO 14001 и охрана труда.'}
+  activeNav={'sertifikaty'}
+>
+  <div class="page-header">
+    <div class="page-header__inner">
+      <div class="page-header__crumb">
+        <a href={withBase('/')}>Главная</a>
+        <span>/</span>
+        <a href={withBase('/o-kompanii/')}>О компании</a>
+      </div>
+      <h1 class="page-header__title">Гарантии и сертификаты</h1>
+      <p class="page-header__subtitle">
+        Сертификаты, разрешения и перечни работ из архива компании. Назначение и
+        сроки указаны рядом с каждым документом.
+      </p>
+    </div>
+  </div>
+
+  <section class="clean-section">
+    <div class="clean-section__inner">
+      <p class="docs-intro">
+        На этой странице представлены документы 2017 и 2019 годов. Указанные в
+        сканах сроки действия завершились; оригиналы доступны для ознакомления.
+      </p>
+      <div class="docs-grid fade-up">
+        {
+          CERTIFICATES.map((c) => (
+            <>
+              <article class="doc-card">
+                <div
+                  class="doc-card__scan js-lightbox-item"
+                  data-src={withBase(c.src)}
+                  data-caption={`${c.code} — ${c.title}`}
+                  tabindex="0"
+                  role="button"
+                >
+                  <img src={withBase(c.src)} alt={c.title} />
+                </div>
+                <div class="doc-card__body">
+                  <div class="doc-card__meta">
+                    <>
+                      <span class="doc-card__code">{c.code}</span>
+                      <span class="doc-card__year">{c.year}</span>
+                    </>
+                  </div>
+                  <h2 class="doc-card__title">{c.title}</h2>
+                  <p class="doc-card__desc">{c.desc}</p>
+                  <p class="doc-card__number">
+                    {c.number.startsWith('К ') ? '' : '№ '}
+                    {c.number}
+                  </p>
+                  <p class="doc-card__period">{c.period}</p>
+                  <button
+                    type="button"
+                    class="doc-card__open js-lightbox-item"
+                    data-src={withBase(c.src)}
+                    data-caption={`${c.title} · ${c.year}`}
+                  >
+                    Открыть документ <span aria-hidden="true">↗</span>
+                  </button>
+                </div>
+              </article>
+            </>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <FinalCta photoSrc={'/assets/images/works/work-04.jpg'} />
+</BaseLayout>

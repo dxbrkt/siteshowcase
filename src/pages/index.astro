@@ -1,0 +1,92 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/urls';
+import FinalCta from '../components/FinalCta.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import { SERVICES } from '../data/services';
+import ClientStories from '../components/ClientStories.astro';
+const featuredServices = [
+  SERVICES[0], // uborka-ofisov
+  SERVICES[1], // uborka-pomeshenij
+  SERVICES[2], // uhod-za-polami
+  SERVICES[3], // mojka-okon-i-fasadov
+  SERVICES[4], // vysotnye-raboty
+  SERVICES[5], // uborka-posle-remonta
+  SERVICES[6], // uborka-territorii
+  SERVICES[9], // gryazezashchitnye-kovry
+  SERVICES[10], // uborka-kvartir
+];
+---
+
+<BaseLayout
+  title={'Классика-АГ | Профессиональные клининговые услуги в Москве'}
+  description={'Профессиональная уборка офисов, бизнес-центров, торговых комплексов, производственных объектов, квартир и коттеджей в Москве и Московской области.'}
+  activeNav={'home'}
+>
+  <section class="hero">
+    <div class="hero__image-wrap">
+      <img
+        src={withBase('/assets/images/hero-classicag.jpg')}
+        alt="Специалист Классика-АГ за работой в офисе"
+        class="hero__image"
+        fetchpriority="high"
+      />
+      <div class="hero__overlay"></div>
+    </div>
+    <div class="hero__content">
+      <h1 class="hero__heading">
+        <span>ЭФФЕКТИВНАЯ РАБОТА,</span><span>ЭФФЕКТИВНЫЙ КЛИНИНГ —</span><span
+          class="hero__motto-result">УСПЕХ.</span
+        >
+      </h1>
+      <p class="hero__sub">
+        Уборка офисов, обслуживание зданий и уход за территориями в Москве и
+        области. Согласуем состав работ и график под ваш объект.
+      </p>
+      <a class="button button--white-lg" href={withBase('/kontakty/#estimate')}>
+        <span class="button__label">Рассчитать стоимость</span>
+      </a>
+      <div class="hero__details">
+        <span>Москва и Московская область</span><a
+          href={withBase('/sertifikaty/')}>Сертификаты компании ↗</a
+        >
+      </div>
+    </div>
+  </section>
+
+  <section class="services-grid">
+    <div class="services-grid__inner">
+      <div class="fade-up">
+        <div class="services-grid__header">
+          <img
+            src={withBase('/assets/images/works/work-09.jpg')}
+            alt="Обслуживание коммерческой недвижимости"
+            class="services-grid__header-img"
+          />
+          <div class="services-grid__header-overlay"></div>
+          <div class="services-grid__header-content">
+            <div>
+              <h2 class="services-grid__heading">Наши услуги</h2>
+              <p class="services-grid__sub">
+                Ежедневная уборка, уход за каменными полами, мойка фасадов,
+                промальп, послестроительный клининг и обслуживание зданий по
+                индивидуальному графику.
+              </p>
+            </div>
+            <a class="services-grid__all-link" href={withBase('/uslugi/')}
+              >Все 12 направлений &rarr;</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="services-grid__cards">
+        {featuredServices.map((service) => <ServiceCard service={service} />)}
+      </div>
+    </div>
+  </section>
+
+  <ClientStories />
+
+  <FinalCta photoSrc={'/assets/images/works/work-04.jpg'} />
+</BaseLayout>

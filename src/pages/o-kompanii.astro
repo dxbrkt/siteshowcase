@@ -1,0 +1,172 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/urls';
+import FinalCta from '../components/FinalCta.astro';
+---
+
+<BaseLayout
+  title={'О компании | Классика-АГ'}
+  description={'ООО «Классика-АГ» (ИНН 7729687715) — профессиональная клининговая компания : технопарк, сертификация ISO 9001 и ГОСТ Р 51870, услуги уборки.'}
+  activeNav={'o-kompanii'}
+>
+  <div class="page-header page-header--photo">
+    <img
+      src={withBase('/assets/images/team-banner.jpg')}
+      alt=""
+      class="page-header__bg"
+    />
+    <div class="page-header__overlay"></div>
+    <div class="page-header__inner">
+      <h1 class="page-header__title">О компании «Классика-АГ»</h1>
+      <p class="page-header__subtitle">
+        Профессиональный клининг и техническая эксплуатация коммерческой и жилой
+        недвижимости в Москве и области .
+      </p>
+    </div>
+  </div>
+
+  <section class="clean-section">
+    <div class="clean-section__inner">
+      <div class="about-story fade-up">
+        <div class="about-story__text">
+          <h2 class="section-heading">Наша задача</h2>
+          <p>
+            В «Классика-АГ» мы выстраиваем ежедневный сервис уборки и
+            эксплуатации зданий так, чтобы он работал незаметно, стабильно и без
+            лишнего участия со стороны заказчика.
+          </p>
+          <p>
+            Компания располагает профессиональным оборудованием,
+            специализированным инвентарём и моющими средствами для уборки.
+          </p>
+          <p>
+            На оригинальном сайте компании указаны более 100 объектов в
+            обслуживании и более 500 000 кв. м чистых помещений.
+          </p>
+        </div>
+        <div class="about-story__image">
+          <img
+            src={withBase('/assets/images/works/work-08.jpg')}
+            alt="Мобильная бригада и транспорт Классика-АГ"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="iso-banner">
+    <div class="iso-banner__inner fade-up">
+      <a class="iso-banner__card" href={withBase('/sertifikaty/')}>
+        <div class="iso-banner__icon">
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"
+            ></path><polyline points="9 12 11 14 15 10"></polyline></svg
+          >
+        </div>
+        <div class="iso-banner__body">
+          <h2 class="iso-banner__title">Гарантии и сертификаты компании</h2>
+          <p class="iso-banner__sub">
+            На сайте компании опубликованы сканы сертификатов. Содержание и
+            сроки действия указаны в оригиналах документов.
+          </p>
+        </div>
+        <span class="iso-banner__btn">Смотреть сертификаты &rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="clean-section">
+    <div class="clean-section__inner">
+      <div class="fade-up">
+        <h2 class="section-heading">Принципы нашей работы</h2>
+      </div>
+
+      <div class="values-grid fade-up">
+        <article class="value-card">
+          <span class="value-card__number">01</span>
+          <h3 class="value-card__title">Собственный технопарк</h3>
+          <p class="value-card__desc">
+            Компания располагает современными техническими аппаратами и
+            специализированным инвентарём для клининга.
+          </p>
+        </article>
+
+        <article class="value-card">
+          <span class="value-card__number">02</span>
+          <h3 class="value-card__title">Штатный персонал</h3>
+          <p class="value-card__desc">
+            Специалисты проходят обучение; при приёме на работу кандидаты
+            проверяются службой безопасности.
+          </p>
+        </article>
+
+        <article class="value-card">
+          <span class="value-card__number">03</span>
+          <h3 class="value-card__title">Персональный контроль</h3>
+          <p class="value-card__desc">
+            Компания поддерживает обратную связь с клиентами и учитывает
+            особенности каждого объекта.
+          </p>
+        </article>
+
+        <article class="value-card">
+          <span class="value-card__number">04</span>
+          <h3 class="value-card__title">Договорные обязательства</h3>
+          <p class="value-card__desc">
+            Компания несёт финансовую и юридическую ответственность в рамках
+            заключённого договора.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="clean-section clean-section--alt" id="tender">
+    <div class="clean-section__inner">
+      <div class="subcards-grid fade-up">
+        <article class="subcard">
+          <div class="subcard__top">
+            <h3 class="subcard__title">Сотрудничество с поставщиками</h3>
+          </div>
+          <p class="subcard__desc">
+            Компания рассматривает предложения поставщиков моющих средств,
+            оборудования и расходных материалов. Направляйте предложения на
+            info@classicag.ru.
+          </p>
+          <div style="margin-top:8px;">
+            <a class="clean-link" href={withBase('/otzyvy/')}
+              >Благодарственные письма заказчиков &rarr;</a
+            >
+          </div>
+        </article>
+
+        <article class="subcard" id="hr">
+          <div class="subcard__top">
+            <h3 class="subcard__title">Вакансии в «Классика-АГ»</h3>
+          </div>
+          <p class="subcard__desc">
+            По вопросам вакансий и актуальных условий трудоустройства
+            обращайтесь по телефону +7 (495) 933-74-96.
+          </p>
+          <div style="margin-top:8px;">
+            <a
+              class="clean-link"
+              href={withBase('/kontakty/?service=employment#estimate')}
+              >Откликнуться на вакансию &rarr;</a
+            >
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <FinalCta photoSrc={'/assets/images/works/work-05.jpg'} />
+</BaseLayout>

@@ -1,0 +1,58 @@
+---
+import { withBase } from '../lib/urls';
+import Icon from '../components/Icon.astro';
+interface Props {
+  photoSrc?: string;
+  serviceQuery?: string;
+}
+const { photoSrc = '/assets/images/works/work-04.jpg', serviceQuery = '' } =
+  Astro.props;
+const contactHref = serviceQuery
+  ? `/kontakty/?service=${encodeURIComponent(serviceQuery)}#estimate`
+  : '/kontakty/#estimate';
+---
+
+<section class="final-cta">
+  <div class="final-cta__inner fade-up">
+    <div class="final-cta__image-wrap">
+      <img
+        src={withBase(photoSrc)}
+        alt="Профессиональная уборка объектов Классика-АГ"
+      />
+    </div>
+    <div class="final-cta__content">
+      <h2 class="final-cta__heading">Готовы к чистоте на вашем объекте?</h2>
+      <p class="final-cta__text">
+        Профессиональная уборка помещений в Москве и области. Обсудите состав
+        работ и расчёт стоимости со специалистом компании:
+      </p>
+      <div class="final-cta__actions">
+        <a class="button button--cta-lg" href={withBase(contactHref)}>
+          <span class="button__label">Получить расчёт</span>
+        </a>
+        <span class="final-cta__or"
+          >или позвоните <a class="final-cta__phone" href="tel:+74959337496"
+            >+7 (495) 933-74-96</a
+          ></span
+        >
+      </div>
+      <ul class="final-cta__perks">
+        <li>
+          <span class="perk-check"
+            ><span class="svg-icon"><Icon name="check" /></span></span
+          >Бесплатный выезд технолога для оценки объекта
+        </li>
+        <li>
+          <span class="perk-check"
+            ><span class="svg-icon"><Icon name="check" /></span></span
+          >Финансовая и юридическая ответственность по договору
+        </li>
+        <li>
+          <span class="perk-check"
+            ><span class="svg-icon"><Icon name="check" /></span></span
+          >Удобный график работы бригад 24/7
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>

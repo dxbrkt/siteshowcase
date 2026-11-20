@@ -1,0 +1,173 @@
+---
+import { withBase } from '../lib/urls';
+import Icon from '../components/Icon.astro';
+import BrandLogo from '../components/BrandLogo.astro';
+interface Props {
+  activeNav: string;
+}
+const { activeNav } = Astro.props;
+const links = [
+  { key: 'home', href: '/', label: 'Главная', icon: 'home' },
+  { key: 'uslugi', href: '/uslugi/', label: 'Услуги', icon: 'sparkle' },
+  { key: 'ceny', href: '/ceny/', label: 'Цены', icon: 'award' },
+  {
+    key: 'o-kompanii',
+    href: '/o-kompanii/',
+    label: 'О компании',
+    icon: 'shield',
+  },
+  {
+    key: 'nashi-raboty',
+    href: '/nashi-raboty/',
+    label: 'Наши работы',
+    icon: 'leaf',
+  },
+  { key: 'kontakty', href: '/kontakty/', label: 'Контакты', icon: 'phone' },
+] as const;
+const isCompanyGroup = [
+  'o-kompanii',
+  'sertifikaty',
+  'otzyvy',
+  'klientam',
+].includes(activeNav);
+---
+
+<header class="navbar" id="navbar">
+  <nav class="navbar__inner" aria-label="Основная навигация">
+    <a class="navbar__logo" href={withBase('/')}>
+      <BrandLogo />
+    </a>
+
+    <ul class="navbar__links">
+      {
+        links.map((l) => {
+          const active =
+            l.key === activeNav || (l.key === 'o-kompanii' && isCompanyGroup);
+          return (
+            <>
+              <li>
+                <a
+                  class={`navbar__link ${active ? 'navbar__link--active' : ''}`}
+                  href={withBase(l.href)}
+                >
+                  {l.label}
+                </a>
+              </li>
+            </>
+          );
+        })
+      }
+    </ul>
+
+    <a
+      class="button button--cta navbar__cta"
+      href={withBase('/kontakty/#estimate')}
+    >
+      <span class="button__label">Рассчитать стоимость</span>
+    </a>
+
+    <button
+      type="button"
+      class="navbar__hamburger"
+      id="drawerOpenBtn"
+      aria-expanded="false"
+      aria-label="Открыть меню"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+</header>
+
+<div class="navbar__backdrop" id="drawerBackdrop" aria-hidden="true"></div>
+<aside
+  class="navbar__drawer"
+  id="mobileDrawer"
+  aria-hidden="true"
+  aria-label="Мобильное меню"
+>
+  <div class="navbar__drawer-header">
+    <a class="navbar__logo" href={withBase('/')}>
+      <BrandLogo />
+    </a>
+    <button
+      type="button"
+      class="navbar__drawer-close-x"
+      id="drawerCloseBtn"
+      aria-label="Закрыть меню"
+    >
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.4"
+        stroke-linecap="round"
+        ><line x1="18" y1="6" x2="6" y2="18"></line><line
+          x1="6"
+          y1="6"
+          x2="18"
+          y2="18"></line></svg
+      >
+    </button>
+  </div>
+
+  <nav class="navbar__drawer-nav">
+    {
+      links.map((l) => (
+        <>
+          <a class="navbar__drawer-item" href={withBase(l.href)}>
+            <span class="navbar__drawer-item-icon">
+              <span class="svg-icon">
+                <Icon name={l.icon} />
+              </span>
+            </span>
+            <span class="navbar__drawer-item-label">{l.label}</span>
+            <svg
+              class="navbar__drawer-item-arrow"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </a>
+        </>
+      ))
+    }
+  </nav>
+
+  <div class="navbar__drawer-sub">
+    <a class="navbar__drawer-sub-item" href="tel:+74959337496">
+      <span class="navbar__drawer-sub-icon"
+        ><span class="svg-icon"><Icon name="phone" /></span></span
+      >
+      <span class="navbar__drawer-sub-text">
+        <span class="navbar__drawer-sub-meta">Телефон</span>
+        <span class="navbar__drawer-sub-label">+7 (495) 933-74-96</span>
+      </span>
+    </a>
+    <a class="navbar__drawer-sub-item" href="mailto:info@classicag.ru">
+      <span class="navbar__drawer-sub-icon"
+        ><span class="svg-icon"><Icon name="mail" /></span></span
+      >
+      <span class="navbar__drawer-sub-text">
+        <span class="navbar__drawer-sub-meta">Почта</span>
+        <span class="navbar__drawer-sub-label">info@classicag.ru</span>
+      </span>
+    </a>
+  </div>
+
+  <div class="navbar__drawer-footer">
+    <a class="navbar__drawer-cta" href={withBase('/kontakty/#estimate')}
+      >Рассчитать стоимость</a
+    >
+  </div>
+</aside>

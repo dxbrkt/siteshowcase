@@ -1,0 +1,28 @@
+export const SHORT_LABELS: Record<string, string> = {
+  'uborka-ofisov': 'Офисы',
+  'uborka-pomeshenij': 'БЦ и ТЦ',
+  'uhod-za-polami': 'Твёрдые полы',
+  'mojka-okon-i-fasadov': 'Окна и фасады',
+  'vysotnye-raboty': 'Промальп',
+  'uborka-posle-remonta': 'После ремонта',
+  'uborka-territorii': 'Территория',
+  'ekspluataciya-zdanij': 'Эксплуатация',
+  himchistka: 'Химчистка',
+  'gryazezashchitnye-kovry': 'Ковры',
+  'uborka-kvartir': 'Квартиры',
+  'uborka-kottedzhej': 'Коттеджи',
+};
+export const CALM_BADGES: Record<string, string> = {
+  'uborka-ofisov': 'Офисы и бизнес',
+  'uborka-pomeshenij': 'Коммерческие объекты',
+  'uhod-za-polami': 'Все типы покрытий',
+  'mojka-okon-i-fasadov': 'Окна и фасады',
+  'vysotnye-raboty': 'Промышленный альпинизм',
+  'uborka-posle-remonta': 'Готовность к заезду',
+  'uborka-territorii': 'Круглогодичный уход',
+  'ekspluataciya-zdanij': 'Инженерные системы',
+  himchistka: 'Ковролин и мебель',
+  'gryazezashchitnye-kovry': 'Сервис сменных ковров',
+  'uborka-kvartir': 'Жилые помещения',
+  'uborka-kottedzhej': 'Москва и область',
+};

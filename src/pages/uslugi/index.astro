@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { withBase } from '../../lib/urls';
+import FinalCta from '../../components/FinalCta.astro';
+import Icon from '../../components/Icon.astro';
+import { SERVICES } from '../../data/services';
+import { SHORT_LABELS } from '../../data/service-labels';
+---
+
+<BaseLayout
+  title={'Услуги клининга в Москве | Классика-АГ'}
+  description={'Все направления профессиональной уборки ООО «Классика-АГ»: офисы, бизнес-центры, ТЦ, твёрдые полы, мойка окон и фасадов, промальп, после ремонта, квартиры и коттеджи.'}
+  activeNav={'uslugi'}
+>
+  <div class="page-header page-header--photo">
+    <img
+      src={withBase('/assets/images/works/work-09.jpg')}
+      alt=""
+      class="page-header__bg"
+    />
+    <div class="page-header__overlay"></div>
+    <div class="page-header__inner">
+      <h1 class="page-header__title">Наши услуги</h1>
+      <p class="page-header__subtitle">
+        Комплексный клининг коммерческой недвижимости, уход за камнем и
+        паркетом, высотная мойка остекления, техническая эксплуатация и уборка
+        домов по гибким тарифам.
+      </p>
+    </div>
+  </div>
+
+  <nav class="jump-nav" aria-label="Быстрый переход по услугам">
+    <div class="jump-nav__inner">
+      {
+        SERVICES.map((s) => (
+          <>
+            <a class="jump-nav__link" href={withBase(`#${s.slug}`)}>
+              {SHORT_LABELS[s.slug] || s.title}
+            </a>
+          </>
+        ))
+      }
+    </div>
+  </nav>
+
+  {
+    SERVICES.map((s, idx) => (
+      <>
+        <section
+          class={`service-detail ${idx % 2 === 1 ? 'service-detail--reversed service-detail--alt' : ''}`}
+          id={s.slug}
+        >
+          <div class="service-detail__inner">
+            <div class="fade-up service-detail__image-wrap">
+              <img src={withBase(s.cardImage)} alt={s.title} />
+            </div>
+            <div class="fade-up service-detail__content">
+              <span class="service-detail__price">{s.minPrice}</span>
+              <h2 class="service-detail__title">{s.title}</h2>
+              <p class="service-detail__desc">{s.lead}</p>
+              <ul class="service-detail__features">
+                {s.checklist.slice(0, 4).map((feat) => (
+                  <>
+                    <li class="service-detail__feature">
+                      <span class="perk-check">
+                        <span class="svg-icon">
+                          <Icon name="check" />
+                        </span>
+                      </span>
+                      <span>{feat}</span>
+                    </li>
+                  </>
+                ))}
+              </ul>
+              <div class="service-detail__actions">
+                <a
+                  class="button button--cta"
+                  href={withBase(`/uslugi/${s.slug}/`)}
+                >
+                  <span class="button__label">Подробнее и тарифы</span>
+                </a>
+                <a
+                  class="button button--outline"
+                  href={withBase(
+                    `/kontakty/?service=${encodeURIComponent(s.slug)}#estimate`,
+                  )}
+                >
+                  <span class="button__label">Запросить смету</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+      </>
+    ))
+  }
+
+  <FinalCta photoSrc={'/assets/images/works/work-08.jpg'} />
+</BaseLayout>

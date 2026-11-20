@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FinalCta from '../components/FinalCta.astro';
+const faqs = [
+  {
+    q: 'Работаете ли вы ночью, в выходные и праздничные дни?',
+    a: 'Компания работает в любое время суток. График обслуживания согласуется с заказчиком.',
+  },
+  {
+    q: 'Нужно ли заказчику закупать инвентарь или моющие средства?',
+    a: 'Компания предоставляет необходимые для уборки чистящие средства и оборудование.',
+  },
+  {
+    q: 'Какие способы оплаты предусмотрены для физических и юридических лиц?',
+    a: 'Предусмотрены оплата наличными после приёмки выполненных работ и безналичный расчёт по счёту.',
+  },
+  {
+    q: 'Как работает аренда грязезащитных ковров?',
+    a: 'Компания предоставляет ковры в аренду, выполняет их обслуживание и замену. Размер, стоимость и график согласуются при заказе.',
+  },
+  {
+    q: 'Закрепляется ли в договоре материальная ответственность?',
+    a: 'Компания несёт финансовую и юридическую ответственность в рамках заключённого договора.',
+  },
+];
+---
+
+<BaseLayout
+  title={'Клиентам: оплата, стандарты качества и частые вопросы | Классика-АГ'}
+  description={'Условия оплаты для частных и юридических лиц, политика качества по ГОСТ Р 51870–2002 и ответы на частые вопросы клиентов ООО «Классика-АГ».'}
+  activeNav={'klientam'}
+>
+  <div class="page-header">
+    <div class="page-header__inner">
+      <h1 class="page-header__title">Информация для клиентов</h1>
+      <p class="page-header__subtitle">
+        Порядок оплаты, стандарты контроля качества по ГОСТ Р 51870–2002,
+        спецпредложения и ответы на частые вопросы.
+      </p>
+    </div>
+  </div>
+
+  <section class="clean-section" id="quality">
+    <div class="clean-section__inner">
+      <div class="subcards-grid fade-up">
+        <article class="subcard">
+          <div class="subcard__top">
+            <h2 class="subcard__title">Способы оплаты и документооборот</h2>
+          </div>
+          <p class="subcard__desc">
+            Предусмотрены наличная оплата после приёмки выполненных работ и
+            банковский перевод. Юридические лица получают акт оказания работ.
+          </p>
+        </article>
+
+        <article class="subcard">
+          <div class="subcard__top">
+            <h2 class="subcard__title">Политика качества ГОСТ Р 51870</h2>
+          </div>
+          <p class="subcard__desc">
+            Качество услуг описано в разделе «Гарантии и сертификаты». Документы
+            доступны для ознакомления.
+          </p>
+        </article>
+
+        <article class="subcard">
+          <div class="subcard__top">
+            <h2 class="subcard__title">Индивидуальный расчёт</h2>
+            <span class="subcard__price">По запросу</span>
+          </div>
+          <p class="subcard__desc">
+            Условия действующих предложений уточняйте по телефону +7 (495)
+            933-74-96.
+          </p>
+        </article>
+
+        <article class="subcard">
+          <div class="subcard__top">
+            <h2 class="subcard__title">Выезд на объект</h2>
+            <span class="subcard__price">Бесплатно</span>
+          </div>
+          <p class="subcard__desc">
+            Выезд специалиста на объект для расчёта стоимости — бесплатно.
+            Средства и оборудование для уборки предоставляет компания.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="clean-section clean-section--alt" id="faq">
+    <div class="clean-section__inner">
+      <div class="fade-up">
+        <h2 class="section-heading">Частые вопросы</h2>
+      </div>
+
+      <div class="faq-stack fade-up">
+        {
+          faqs.map((f, i) => (
+            <>
+              <div class={`faq-row ${i === 0 ? 'is-open' : ''}`}>
+                <button
+                  type="button"
+                  class="faq-row__btn"
+                  aria-expanded={i === 0 ? 'true' : 'false'}
+                >
+                  <span>{f.q}</span>
+                  <span class="faq-row__sign" aria-hidden="true">
+                    +
+                  </span>
+                </button>
+                <div class="faq-row__body" hidden={i !== 0}>
+                  <p>{f.a}</p>
+                </div>
+              </div>
+            </>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <FinalCta photoSrc={'/assets/images/works/work-02.jpg'} />
+</BaseLayout>
+
+<script>
+  import { initFaq } from '../scripts/faq';
+  initFaq();
+</script>

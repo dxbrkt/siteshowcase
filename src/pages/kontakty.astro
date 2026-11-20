@@ -1,0 +1,182 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBase } from '../lib/urls';
+import Icon from '../components/Icon.astro';
+import { SERVICES } from '../data/services';
+---
+
+<BaseLayout
+  title={'Контакты | Классика-АГ'}
+  description={'Контакты клининговой компании ООО «Классика-АГ» в Москве: +7 (495) 933-74-96, info@classicag.ru, ул. Вольная, д. 39, стр. 8 и Алтуфьевское шоссе, д. 44.'}
+  activeNav={'kontakty'}
+>
+  <div class="page-header">
+    <div class="page-header__inner">
+      <h1 class="page-header__title">Свяжитесь с нами</h1>
+      <p class="page-header__subtitle">
+        Оставьте запрос на бесплатный расчёт стоимости уборки или задайте любой
+        вопрос по обслуживанию вашего объекта.
+      </p>
+    </div>
+  </div>
+
+  <section class="contact-page" id="estimate">
+    <div class="contact-page__inner">
+      <div class="fade-up contact-page__form-wrap">
+        <h2 class="contact-page__form-title">
+          Запрос расчёта и обратная связь
+        </h2>
+        <form class="contact-form js-lead-form" novalidate>
+          <div class="contact-form__row">
+            <div class="contact-form__field">
+              <label for="name">Ваше имя или организация</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Иван Петров / ООО «Компания»"
+                required
+                autocomplete="name"
+              />
+            </div>
+            <div class="contact-form__field">
+              <label for="email">Электронная почта</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="name@company.ru"
+                autocomplete="email"
+              />
+            </div>
+          </div>
+
+          <div class="contact-form__row">
+            <div class="contact-form__field">
+              <label for="phone">Номер телефона</label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                class="js-phone-input"
+                placeholder="+7 (___) ___-__-__"
+                required
+                autocomplete="tel"
+              />
+            </div>
+            <div class="contact-form__field">
+              <label for="service">Меня интересует</label>
+              <select id="service" name="service">
+                <option value="free-estimate">Расчёт стоимости уборки</option>
+                {
+                  SERVICES.map((s) => (
+                    <>
+                      <option value={s.slug}>{s.title}</option>
+                    </>
+                  ))
+                }
+                <option value="tender">Приглашение в тендер</option>
+                <option value="employment">Трудоустройство / вакансии</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="contact-form__field">
+            <label for="comment">Опишите ваш объект и задачу</label>
+            <textarea
+              id="comment"
+              name="comment"
+              rows="5"
+              placeholder="Укажите ориентировочную площадь в м², адрес в Москве/МО и желаемый график работ…"
+            ></textarea>
+          </div>
+
+          <div>
+            <button class="button button--cta-lg" type="submit">
+              <span class="button__label">Подготовить письмо</span>
+            </button>
+          </div>
+
+          <p class="contact-form__disclaimer">
+            Форма подготовит письмо в вашей почтовой программе. Проверьте его и
+            отправьте на info@classicag.ru. Данные не отправляются
+            автоматически.
+          </p>
+          <div class="form-msg" aria-live="polite"></div>
+        </form>
+      </div>
+
+      <aside class="fade-up contact-sidebar">
+        <div class="contact-sidebar__item">
+          <span class="contact-sidebar__icon"
+            ><span class="svg-icon"><Icon name="phone" /></span></span
+          >
+          <div>
+            <strong>Телефон</strong>
+            <a href="tel:+74959337496">+7 (495) 933-74-96</a>
+          </div>
+        </div>
+
+        <div class="contact-sidebar__item">
+          <span class="contact-sidebar__icon"
+            ><span class="svg-icon"><Icon name="mail" /></span></span
+          >
+          <div>
+            <strong>Электронная почта</strong>
+            <a href="mailto:info@classicag.ru">info@classicag.ru</a>
+          </div>
+        </div>
+
+        <div class="contact-sidebar__item">
+          <span class="contact-sidebar__icon"
+            ><span class="svg-icon"><Icon name="pin" /></span></span
+          >
+          <div>
+            <strong>Адреса офисов в Москве</strong>
+            <span>
+              105187, ул. Вольная, д. 39, стр. 8, эт. 4<br /><br />
+              127566, Алтуфьевское шоссе, д. 44,<br />БЦ «АЛЬТЕЗА»
+            </span>
+          </div>
+        </div>
+
+        <div class="contact-sidebar__item">
+          <span class="contact-sidebar__icon"
+            ><span class="svg-icon"><Icon name="clock" /></span></span
+          >
+          <div>
+            <strong>Режим работы</strong>
+            <span
+              >Офис: Пн–Пт 09:00–18:00<br />Выезд клининговых бригад: 24/7</span
+            >
+          </div>
+        </div>
+
+        <div class="contact-sidebar__item">
+          <span class="contact-sidebar__icon"
+            ><span class="svg-icon"><Icon name="shield" /></span></span
+          >
+          <div>
+            <strong>Реквизиты</strong>
+            <span
+              >ООО «Классика-АГ» · ИНН 7729687715<br />Контактный телефон: +7
+              (495) 933-74-96</span
+            >
+          </div>
+        </div>
+
+        <div class="contact-sidebar__photo">
+          <img
+            src={withBase('/assets/images/office-building.jpg')}
+            alt="Здание центрального офиса Классика-АГ на ул. Вольная, д. 39, стр. 8"
+          />
+        </div>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  import { initContactForm } from '../scripts/contact-form';
+  initContactForm();
+</script>
