@@ -12,7 +12,7 @@ const badge = CALM_BADGES[s.slug] || 'Клининг';
 <div class="fade-up">
   <article class="service-card">
     <div class="service-card__photo">
-      <img src={withBase(s.cardImage)} alt={s.title} />
+      <img src={withBase(s.cardImage)} alt={s.title} loading="lazy" decoding="async" />
       <div class="service-card__gradient"></div>
       <div class="service-card__body">
         <span class="service-card__badge">{badge}</span>
