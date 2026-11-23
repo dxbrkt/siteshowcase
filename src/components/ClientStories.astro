@@ -7,85 +7,69 @@ import '../styles/client-stories.css';
 <section class="client-stories" aria-labelledby="stories-heading">
   <div class="client-stories__inner">
     <div class="client-stories__heading">
-      <div>
-        <span class="client-stories__eyebrow">Нам доверяют</span><h2
-          id="stories-heading"
-        >
-          Хорошая работа.<br />Добрые слова.
-        </h2>
-      </div>
-      <p>О сотрудничестве с «Классикой-АГ»<br />из писем наших заказчиков.</p>
+      <h2 id="stories-heading">Отзывы клиентов</h2>
+      <p>Из благодарственных писем наших заказчиков.</p>
     </div>
-    <div class="client-stories__grid">
-      {
-        REVIEWS.slice(0, 3).map((review, index) => (
-          <>
-            <article class="client-story">
-              <div class="client-story__top">
+    <p>О сотрудничестве с «Классикой-АГ»<br />из писем наших заказчиков.</p>
+  </div>
+  <div class="client-stories__grid">
+    {
+      REVIEWS.slice(0, 3).map((review) => (
+        <>
+          <article class="client-story">
+            <blockquote>{review.quote}</blockquote>
+            <div class="client-story__author">
+              {review.logo ? (
                 <>
-                  <span class="client-story__number">
-                    0{index + 1} / Отзыв клиента
-                  </span>
-                  <span class="client-story__quote" aria-hidden="true">
-                    “
+                  <span class="client-story__brand">
+                    <img
+                      src={withBase(review.logo)}
+                      alt={`Логотип ${review.org}`}
+                      loading="lazy"
+                    />
                   </span>
                 </>
+              ) : (
+                <>
+                  <span class="client-story__monogram" aria-hidden="true">
+                    {review.initial}
+                  </span>
+                </>
+              )}
+              <div>
+                <>
+                  <h3>{review.org}</h3>
+                  <p>{review.role}</p>
+                </>
               </div>
-              <blockquote>{review.quote}</blockquote>
-              <div class="client-story__author">
-                {review.logo ? (
-                  <>
-                    <span class="client-story__brand">
-                      <img
-                        src={withBase(review.logo)}
-                        alt={`Логотип ${review.org}`}
-                        loading="lazy"
-                      />
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    <span class="client-story__monogram" aria-hidden="true">
-                      {review.initial}
-                    </span>
-                  </>
-                )}
-                <div>
-                  <>
-                    <h3>{review.org}</h3>
-                    <p>{review.role}</p>
-                  </>
-                </div>
-              </div>
-              <a
-                class="client-story__document js-lightbox-item"
-                href={withBase(review.src)}
-                data-src={withBase(review.src)}
-                data-caption={`${review.org} — благодарственное письмо`}
-                aria-label={`Читать письмо: ${review.org}`}
-              >
-                <span class="client-story__paper">
-                  <img src={withBase(review.src)} alt="" loading="lazy" />
+            </div>
+            <a
+              class="client-story__document js-lightbox-item"
+              href={withBase(review.src)}
+              data-src={withBase(review.src)}
+              data-caption={`${review.org} — благодарственное письмо`}
+              aria-label={`Читать письмо: ${review.org}`}
+            >
+              <span class="client-story__paper">
+                <img src={withBase(review.src)} alt="" loading="lazy" />
+              </span>
+              <>
+                <span>
+                  Благодарственное письмо<small>Посмотреть оригинал</small>
                 </span>
-                <>
-                  <span>
-                    Благодарственное письмо<small>Посмотреть оригинал</small>
-                  </span>
-                  <span class="client-story__arrow" aria-hidden="true">
-                    ↗
-                  </span>
-                </>
-              </a>
-            </article>
-          </>
-        ))
-      }
-    </div>
-    <div class="client-stories__bottom">
-      <span>За каждым отзывом — совместная работа.</span><a
-        href={withBase('/otzyvy/')}
-        >Все письма клиентов <span aria-hidden="true">↗</span></a
-      >
-    </div>
+                <span class="client-story__arrow" aria-hidden="true">
+                  ↗︎
+                </span>
+              </>
+            </a>
+          </article>
+        </>
+      ))
+    }
+  </div>
+  <div class="client-stories__bottom">
+    <a href={withBase('/otzyvy/')}
+      >Все письма клиентов <span aria-hidden="true">↗︎</span></a
+    >
   </div>
 </section>
