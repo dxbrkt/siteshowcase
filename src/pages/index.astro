@@ -1,10 +1,31 @@
 ---
+import ResponsiveImage from '../components/ResponsiveImage.astro';
+import { fullWidthImageWidths } from '../lib/images';
+import Lightbox from '../components/Lightbox.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { withBase } from '../lib/urls';
 import FinalCta from '../components/FinalCta.astro';
 import ServiceCard from '../components/ServiceCard.astro';
 import { SERVICES } from '../data/services';
 import ClientStories from '../components/ClientStories.astro';
+import { office } from '../data/office';
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'ООО «Классика-АГ»',
+  url: Astro.site && new URL(withBase('/'), Astro.site).href,
+  telephone: '+7 495 933-74-96',
+  email: 'info@classicag.ru',
+  taxID: '7729687715',
+  address: {
+    '@type': 'PostalAddress',
+    addressCountry: 'RU',
+    addressLocality: office.city,
+    postalCode: office.postalCode,
+    streetAddress: office.street,
+  },
+};
 const featuredServices = [
   SERVICES[0], // uborka-ofisov
   SERVICES[1], // uborka-pomeshenij
@@ -23,13 +44,20 @@ const featuredServices = [
   description={'Профессиональная уборка офисов, бизнес-центров, торговых комплексов, производственных объектов, квартир и коттеджей в Москве и Московской области.'}
   activeNav={'home'}
 >
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(organization)}
+  />
   <section class="hero">
     <div class="hero__image-wrap">
-      <img
-        src={withBase('/assets/images/hero-classicag.jpg')}
+      <ResponsiveImage
+        src="hero-classicag.jpg"
         alt="Специалист Классика-АГ за работой в офисе"
         class="hero__image"
-        fetchpriority="high"
+        widths={fullWidthImageWidths}
+        sizes="100vw"
+        priority
       />
       <div class="hero__overlay"></div>
     </div>
@@ -58,8 +86,10 @@ const featuredServices = [
     <div class="services-grid__inner">
       <div class="fade-up">
         <div class="services-grid__header">
-          <img
-            src={withBase('/assets/images/works/work-09.jpg')}
+          <ResponsiveImage
+            src="works/work-09.jpg"
+            sizes="(max-width: 1240px) calc(100vw - 40px), 1200px"
+            widths={fullWidthImageWidths}
             alt="Обслуживание коммерческой недвижимости"
             class="services-grid__header-img"
           />
@@ -88,5 +118,6 @@ const featuredServices = [
 
   <ClientStories />
 
-  <FinalCta photoSrc={'/assets/images/works/work-04.jpg'} />
+  <FinalCta photoSrc={'works/work-04.jpg'} />
+  <Lightbox />
 </BaseLayout>

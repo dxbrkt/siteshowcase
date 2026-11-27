@@ -1,6 +1,6 @@
 export const CERTIFICATES = [
   {
-    src: '/assets/images/certificates/cert-01.jpg',
+    src: 'certificates/cert-01.jpg',
     code: 'ISO 9001:2015',
     title: 'Менеджмент качества',
     desc: 'Система менеджмента качества применительно к работам из приложения.',
@@ -9,7 +9,7 @@ export const CERTIFICATES = [
     period: '11.05.2017 — 11.05.2020',
   },
   {
-    src: '/assets/images/certificates/cert-02.jpg',
+    src: 'certificates/cert-02.jpg',
     code: 'Разрешение',
     title: 'Знак соответствия',
     desc: 'Право применять знак системы сертификации «СтандартЕвроГрупп».',
@@ -18,7 +18,7 @@ export const CERTIFICATES = [
     period: 'До 11.05.2020',
   },
   {
-    src: '/assets/images/certificates/cert-03.jpg',
+    src: 'certificates/cert-03.jpg',
     code: 'ISO 14001:2015',
     title: 'Экологический менеджмент',
     desc: 'Система экологического менеджмента при выполнении заявленных работ.',
@@ -27,7 +27,7 @@ export const CERTIFICATES = [
     period: '11.05.2017 — 11.05.2020',
   },
   {
-    src: '/assets/images/certificates/cert-04.jpg',
+    src: 'certificates/cert-04.jpg',
     code: 'OHSAS 18001:2007',
     title: 'Безопасность труда',
     desc: 'Безопасность труда и охрана здоровья при выполнении работ.',
@@ -36,7 +36,7 @@ export const CERTIFICATES = [
     period: '11.05.2017 — 11.05.2020',
   },
   {
-    src: '/assets/images/certificates/cert-05.jpg',
+    src: 'certificates/cert-05.jpg',
     code: 'Приложение № 1',
     title: 'Перечень работ',
     desc: 'Уборка зданий, помещений и территорий, уход за покрытиями и другие работы.',
@@ -45,7 +45,7 @@ export const CERTIFICATES = [
     period: 'Приложение к документам 2017 года',
   },
   {
-    src: '/assets/images/certificates/cert-06.jpg',
+    src: 'certificates/cert-06.jpg',
     code: 'Разрешение',
     title: 'Применение знака системы',
     desc: 'Разрешение на использование знака соответствия на бланках, в договорах и изданиях.',
@@ -54,7 +54,7 @@ export const CERTIFICATES = [
     period: 'До 04.09.2022',
   },
   {
-    src: '/assets/images/certificates/cert-07.jpg',
+    src: 'certificates/cert-07.jpg',
     code: 'OHSAS 18001:2007',
     title: 'Охрана труда и здоровья',
     desc: 'Система менеджмента безопасности труда и охраны здоровья.',
@@ -63,7 +63,7 @@ export const CERTIFICATES = [
     period: '04.09.2019 — 04.09.2022',
   },
   {
-    src: '/assets/images/certificates/cert-08.jpg',
+    src: 'certificates/cert-08.jpg',
     code: 'ISO 9001:2015',
     title: 'Менеджмент качества',
     desc: 'Система менеджмента качества для перечисленных в документе клининговых работ.',

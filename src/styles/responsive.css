@@ -6,10 +6,9 @@
   .about-story,
   .values-grid,
   .subcards-grid,
-  .calc-grid,
   .contact-page__inner,
   .letters-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 32px;
   }
   .photo-grid,
@@ -39,20 +38,9 @@
   .letter-card__scan {
     max-width: 190px;
   }
-  .lightbox {
-    padding: 16px;
-  }
-  .lightbox__prev,
-  .lightbox__next {
-    top: auto;
-    bottom: 20px;
-    transform: none;
-  }
 }
 
 :root {
-  --font-heading: 'Golos Text', sans-serif;
-  --font-body: 'Golos Text', sans-serif;
   --radius-card: 5px;
   --radius-btn: 4px;
   --radius-pill: 4px;
@@ -106,12 +94,6 @@
 .hero {
   min-height: 680px;
   max-height: 880px;
-}
-.hero__heading {
-  font-weight: 500;
-  font-size: clamp(36px, 4.6vw, 62px);
-  letter-spacing: -0.035em;
-  max-width: 690px;
 }
 .hero__sub {
   font-size: 16px;
@@ -250,13 +232,12 @@
   font-size: clamp(30px, 3.7vw, 52px);
   font-weight: 600;
   line-height: 1.14;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.02em;
 }
 .hero__heading > span {
   display: block;
 }
 .hero__motto-result {
-  color: #c5e59c;
   margin-top: 10px;
 }
 .hero__overlay {
@@ -271,11 +252,11 @@
   .hero__heading {
     font-size: clamp(23px, 5.8vw, 38px);
     line-height: 1.25;
-    letter-spacing: -0.025em;
+    letter-spacing: -0.01em;
   }
   .hero__motto-result {
     margin-top: 12px;
-    font-size: 1.4em;
+    font-size: 1.2em;
   }
 }
 

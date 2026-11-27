@@ -1,4 +1,7 @@
 ---
+import ResponsiveImage from '../components/ResponsiveImage.astro';
+import { imageAsset } from '../lib/images';
+import Lightbox from '../components/Lightbox.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { withBase } from '../lib/urls';
 import FinalCta from '../components/FinalCta.astro';
@@ -35,12 +38,17 @@ import { REVIEWS } from '../data/reviews';
               <article class="letter-card">
                 <div
                   class="letter-card__scan js-lightbox-item"
-                  data-src={withBase(r.src)}
+                  data-src={imageAsset(r.src).src}
                   data-caption={`${r.org} — ${r.role}`}
                   tabindex="0"
                   role="button"
                 >
-                  <img src={withBase(r.src)} alt={`Отзыв ${r.org}`} />
+                  <ResponsiveImage
+                    src={r.src}
+                    sizes="190px"
+                    widths={[192, 384]}
+                    alt={`Отзыв ${r.org}`}
+                  />
                 </div>
                 <div>
                   <h2 class="letter-card__org">{r.org}</h2>
@@ -55,5 +63,6 @@ import { REVIEWS } from '../data/reviews';
     </div>
   </section>
 
-  <FinalCta photoSrc={'/assets/images/old-services/office-1.jpg'} />
+  <FinalCta photoSrc={'old-services/office-1.jpg'} />
+  <Lightbox />
 </BaseLayout>

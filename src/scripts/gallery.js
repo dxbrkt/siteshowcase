@@ -7,7 +7,10 @@ export function initGallery() {
     filterPills.forEach((pill) => {
       pill.addEventListener('click', () => {
         const cat = pill.getAttribute('data-filter') || 'all';
-        filterPills.forEach((p) => p.classList.toggle('is-active', p === pill));
+        filterPills.forEach((p) => {
+          p.classList.toggle('is-active', p === pill);
+          p.setAttribute('aria-pressed', String(p === pill));
+        });
         cards.forEach((c) => {
           c.hidden = !(
             cat === 'all' || c.getAttribute('data-category') === cat

@@ -1,4 +1,7 @@
 ---
+import ResponsiveImage from '../components/ResponsiveImage.astro';
+import { imageAsset } from '../lib/images';
+import Lightbox from '../components/Lightbox.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { withBase } from '../lib/urls';
 import FinalCta from '../components/FinalCta.astro';
@@ -29,7 +32,8 @@ import { CERTIFICATES } from '../data/certificates';
     <div class="clean-section__inner">
       <p class="docs-intro">
         На этой странице представлены документы 2017 и 2019 годов. Указанные в
-        сканах сроки действия завершились; оригиналы доступны для ознакомления.
+        сканах сроки действия завершились. На части сканов закрыт прежний адрес
+        офиса.
       </p>
       <div class="docs-grid fade-up">
         {
@@ -38,12 +42,17 @@ import { CERTIFICATES } from '../data/certificates';
               <article class="doc-card">
                 <div
                   class="doc-card__scan js-lightbox-item"
-                  data-src={withBase(c.src)}
+                  data-src={imageAsset(c.src).src}
                   data-caption={`${c.code} — ${c.title}`}
                   tabindex="0"
                   role="button"
                 >
-                  <img src={withBase(c.src)} alt={c.title} />
+                  <ResponsiveImage
+                    src={c.src}
+                    sizes="190px"
+                    widths={[192, 384, 576]}
+                    alt={c.title}
+                  />
                 </div>
                 <div class="doc-card__body">
                   <div class="doc-card__meta">
@@ -62,7 +71,7 @@ import { CERTIFICATES } from '../data/certificates';
                   <button
                     type="button"
                     class="doc-card__open js-lightbox-item"
-                    data-src={withBase(c.src)}
+                    data-src={imageAsset(c.src).src}
                     data-caption={`${c.title} · ${c.year}`}
                   >
                     Открыть документ <span aria-hidden="true">↗︎</span>
@@ -76,5 +85,6 @@ import { CERTIFICATES } from '../data/certificates';
     </div>
   </section>
 
-  <FinalCta photoSrc={'/assets/images/works/work-04.jpg'} />
+  <FinalCta photoSrc={'works/work-04.jpg'} />
+  <Lightbox />
 </BaseLayout>

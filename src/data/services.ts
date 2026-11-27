@@ -7,23 +7,23 @@ export const SERVICES = [
     shortDesc:
       'Ежедневная, комплексная и генеральная уборка. Чистое рабочее пространство без лишних забот.',
     minPrice: '35 руб. / кв. м',
-    cardImage: '/assets/images/old-services/office-1.jpg',
-    heroImage: '/assets/images/old-services/office-2.jpg',
+    cardImage: 'old-services/office-1.jpg',
+    heroImage: 'old-services/office-2.jpg',
     gallery: [
       {
-        src: '/assets/images/old-services/office-1.jpg',
+        src: 'old-services/office-1.jpg',
         caption: 'Уборка офисов',
       },
       {
-        src: '/assets/images/old-services/office-2.jpg',
+        src: 'old-services/office-2.jpg',
         caption: 'Уборка офисов',
       },
       {
-        src: '/assets/images/team-banner.jpg',
+        src: 'team-banner.jpg',
         caption: 'Уборка офисов',
       },
       {
-        src: '/assets/images/works/work-04.jpg',
+        src: 'works/work-04.jpg',
         caption: 'Уборка офисов',
       },
     ],
@@ -77,23 +77,23 @@ export const SERVICES = [
     shortDesc:
       'Комплексный клининг бизнес-центров, торговых комплексов, складов, цехов и паркингов.',
     minPrice: 'от 35 руб. / кв. м',
-    cardImage: '/assets/images/works/work-13.jpg',
-    heroImage: '/assets/images/works/work-09.jpg',
+    cardImage: 'works/work-13.jpg',
+    heroImage: 'works/work-09.jpg',
     gallery: [
       {
-        src: '/assets/images/works/work-09.jpg',
+        src: 'works/work-09.jpg',
         caption: 'Уборка помещений, БЦ и ТЦ',
       },
       {
-        src: '/assets/images/works/work-13.jpg',
+        src: 'works/work-13.jpg',
         caption: 'Уборка помещений, БЦ и ТЦ',
       },
       {
-        src: '/assets/images/works/work-11.jpg',
+        src: 'works/work-11.jpg',
         caption: 'Уборка помещений, БЦ и ТЦ',
       },
       {
-        src: '/assets/images/works/work-06.jpg',
+        src: 'works/work-06.jpg',
         caption: 'Уборка помещений, БЦ и ТЦ',
       },
     ],
@@ -280,23 +280,23 @@ export const SERVICES = [
     shortDesc:
       'Глубокая очистка, шлифовка, полировка и кристаллизация мрамора, гранита, паркета и бетона.',
     minPrice: 'от 30 руб. / кв. м',
-    cardImage: '/assets/images/works/work-11.jpg',
-    heroImage: '/assets/images/works/work-11.jpg',
+    cardImage: 'works/work-11.jpg',
+    heroImage: 'works/work-11.jpg',
     gallery: [
       {
-        src: '/assets/images/works/work-11.jpg',
+        src: 'works/work-11.jpg',
         caption: 'Уход за твёрдыми полами',
       },
       {
-        src: '/assets/images/old-services/floors-1.jpg',
+        src: 'old-services/floors-1.jpg',
         caption: 'Уход за твёрдыми полами',
       },
       {
-        src: '/assets/images/old-services/floors-2.jpg',
+        src: 'old-services/floors-2.jpg',
         caption: 'Уход за твёрдыми полами',
       },
       {
-        src: '/assets/images/works/work-13.jpg',
+        src: 'works/work-13.jpg',
         caption: 'Уход за твёрдыми полами',
       },
     ],
@@ -404,23 +404,23 @@ export const SERVICES = [
     shortDesc:
       'Мойка остекления, витрин и фасадов любой этажности, включая удаление высолов и сложных загрязнений.',
     minPrice: 'от 160 руб. / шт.',
-    cardImage: '/assets/images/works/work-02.jpg',
-    heroImage: '/assets/images/works/work-08.jpg',
+    cardImage: 'works/work-02.jpg',
+    heroImage: 'works/work-08.jpg',
     gallery: [
       {
-        src: '/assets/images/works/work-08.jpg',
+        src: 'works/work-08.jpg',
         caption: 'Мойка окон и фасадов',
       },
       {
-        src: '/assets/images/works/work-02.jpg',
+        src: 'works/work-02.jpg',
         caption: 'Мойка окон и фасадов',
       },
       {
-        src: '/assets/images/old-services/windows-1.jpg',
+        src: 'old-services/windows-1.jpg',
         caption: 'Мойка окон и фасадов',
       },
       {
-        src: '/assets/images/old-services/windows-2.jpg',
+        src: 'old-services/windows-2.jpg',
         caption: 'Мойка окон и фасадов',
       },
     ],
@@ -481,23 +481,23 @@ export const SERVICES = [
     shortDesc:
       'Мойка фасадов и сплошного остекления на высоте. Зимняя очистка кровли от снега, сосулек и наледи.',
     minPrice: 'от 40 руб. / кв. м',
-    cardImage: '/assets/images/service-highrise.jpg',
-    heroImage: '/assets/images/works/work-15.jpg',
+    cardImage: 'service-highrise.jpg',
+    heroImage: 'works/work-15.jpg',
     gallery: [
       {
-        src: '/assets/images/service-highrise.jpg',
+        src: 'service-highrise.jpg',
         caption: 'Высотные работы и промальп',
       },
       {
-        src: '/assets/images/works/work-15.jpg',
+        src: 'works/work-15.jpg',
         caption: 'Высотные работы и промальп',
       },
       {
-        src: '/assets/images/works/work-14.jpg',
+        src: 'works/work-14.jpg',
         caption: 'Высотные работы и промальп',
       },
       {
-        src: '/assets/images/works/work-17.jpg',
+        src: 'works/work-17.jpg',
         caption: 'Высотные работы и промальп',
       },
     ],
@@ -610,23 +610,23 @@ export const SERVICES = [
     shortDesc:
       'Удалим строительную пыль и следы отделки. Экстренная уборка после мероприятий, затоплений и пожаров.',
     minPrice: 'от 70 руб. / кв. м',
-    cardImage: '/assets/images/old-services/post-repair-1.jpg',
-    heroImage: '/assets/images/old-services/emergency-1.jpg',
+    cardImage: 'old-services/post-repair-1.jpg',
+    heroImage: 'old-services/emergency-1.jpg',
     gallery: [
       {
-        src: '/assets/images/old-services/post-repair-1.jpg',
+        src: 'old-services/post-repair-1.jpg',
         caption: 'Уборка «после»: ремонт, мероприятия, ЧП',
       },
       {
-        src: '/assets/images/old-services/post-repair-2.jpg',
+        src: 'old-services/post-repair-2.jpg',
         caption: 'Уборка «после»: ремонт, мероприятия, ЧП',
       },
       {
-        src: '/assets/images/old-services/emergency-1.jpg',
+        src: 'old-services/emergency-1.jpg',
         caption: 'Уборка «после»: ремонт, мероприятия, ЧП',
       },
       {
-        src: '/assets/images/works/work-01.jpg',
+        src: 'works/work-01.jpg',
         caption: 'Уборка «после»: ремонт, мероприятия, ЧП',
       },
     ],
@@ -681,19 +681,19 @@ export const SERVICES = [
     shortDesc:
       'Летнее и зимнее содержание территорий БЦ, ТЦ и ЖК: подметание, газоны, уборка и вывоз снега.',
     minPrice: 'от 15 руб. / кв. м',
-    cardImage: '/assets/images/works/work-08.jpg',
-    heroImage: '/assets/images/works/work-08.jpg',
+    cardImage: 'works/work-08.jpg',
+    heroImage: 'works/work-08.jpg',
     gallery: [
       {
-        src: '/assets/images/works/work-08.jpg',
+        src: 'works/work-08.jpg',
         caption: 'Уборка прилегающей территории',
       },
       {
-        src: '/assets/images/old-services/territory-1.jpg',
+        src: 'old-services/territory-1.jpg',
         caption: 'Уборка прилегающей территории',
       },
       {
-        src: '/assets/images/old-services/territory-2.jpg',
+        src: 'old-services/territory-2.jpg',
         caption: 'Уборка прилегающей территории',
       },
     ],
@@ -738,15 +738,15 @@ export const SERVICES = [
     shortDesc:
       'Комплексное обслуживание инженерных систем: вентиляция, электрика, отопление, водоснабжение и ремонт.',
     minPrice: 'по запросу',
-    cardImage: '/assets/images/works/work-09.jpg',
-    heroImage: '/assets/images/works/work-09.jpg',
+    cardImage: 'works/work-09.jpg',
+    heroImage: 'works/work-09.jpg',
     gallery: [
       {
-        src: '/assets/images/works/work-09.jpg',
+        src: 'works/work-09.jpg',
         caption: 'Техническая эксплуатация зданий',
       },
       {
-        src: '/assets/images/office-building.jpg',
+        src: 'office-building.jpg',
         caption: 'Техническая эксплуатация зданий',
       },
     ],
@@ -795,15 +795,15 @@ export const SERVICES = [
     shortDesc:
       'Глубокая экстракторная химчистка ковролина, ковров, диванов, кресел и стульев с выездом на объект.',
     minPrice: 'от 35 руб. / кв. м',
-    cardImage: '/assets/images/works/work-05.jpg',
-    heroImage: '/assets/images/works/work-05.jpg',
+    cardImage: 'works/work-05.jpg',
+    heroImage: 'works/work-05.jpg',
     gallery: [
       {
-        src: '/assets/images/works/work-05.jpg',
+        src: 'works/work-05.jpg',
         caption: 'Химчистка мебели и ковролина',
       },
       {
-        src: '/assets/images/old-services/office-1.jpg',
+        src: 'old-services/office-1.jpg',
         caption: 'Химчистка мебели и ковролина',
       },
     ],
@@ -855,15 +855,15 @@ export const SERVICES = [
     shortDesc:
       'Регулярная замена чистых влаговпитывающих ворсовых ковров на резиновой основе от 1 до 5 раз в неделю.',
     minPrice: '459,00 руб. / шт.',
-    cardImage: '/assets/images/old-services/mats-1.jpg',
-    heroImage: '/assets/images/works/work-13.jpg',
+    cardImage: 'old-services/mats-1.jpg',
+    heroImage: 'works/work-13.jpg',
     gallery: [
       {
-        src: '/assets/images/old-services/mats-1.jpg',
+        src: 'old-services/mats-1.jpg',
         caption: 'Грязезащитные ковры: аренда и продажа',
       },
       {
-        src: '/assets/images/old-services/mats-2.jpg',
+        src: 'old-services/mats-2.jpg',
         caption: 'Грязезащитные ковры: аренда и продажа',
       },
     ],
@@ -906,15 +906,15 @@ export const SERVICES = [
     title: 'Уборка квартир в Москве',
     shortDesc: 'Поддерживающая, генеральная и послеремонтная уборка квартир.',
     minPrice: 'от 55 руб. / кв. м',
-    cardImage: '/assets/images/old-services/apartment-1.jpg',
-    heroImage: '/assets/images/old-services/apartment-1.jpg',
+    cardImage: 'old-services/apartment-1.jpg',
+    heroImage: 'old-services/apartment-1.jpg',
     gallery: [
       {
-        src: '/assets/images/old-services/apartment-1.jpg',
+        src: 'old-services/apartment-1.jpg',
         caption: 'Уборка квартир в Москве',
       },
       {
-        src: '/assets/images/works/work-04.jpg',
+        src: 'works/work-04.jpg',
         caption: 'Уборка квартир в Москве',
       },
     ],
@@ -994,15 +994,15 @@ export const SERVICES = [
     shortDesc:
       'Комплексная уборка домов в Москве и Подмосковье: жилые этажи, панорамные окна, террасы, бассейны.',
     minPrice: 'от 60 руб. / кв. м',
-    cardImage: '/assets/images/old-services/cottage-1.jpg',
-    heroImage: '/assets/images/old-services/cottage-1.jpg',
+    cardImage: 'old-services/cottage-1.jpg',
+    heroImage: 'old-services/cottage-1.jpg',
     gallery: [
       {
-        src: '/assets/images/old-services/cottage-1.jpg',
+        src: 'old-services/cottage-1.jpg',
         caption: 'Уборка коттеджей и загородных домов',
       },
       {
-        src: '/assets/images/works/work-08.jpg',
+        src: 'works/work-08.jpg',
         caption: 'Уборка коттеджей и загородных домов',
       },
     ],

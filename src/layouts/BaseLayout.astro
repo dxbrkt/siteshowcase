@@ -1,15 +1,21 @@
 ---
+import { Font } from 'astro:assets';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Lightbox from '../components/Lightbox.astro';
+import { imageAsset } from '../lib/images';
 import '../styles/global.css';
-import '../styles/client-stories.css';
 interface Props {
   title: string;
   description: string;
   activeNav: string;
+  noindex?: boolean;
 }
-const { title, description, activeNav } = Astro.props;
+const { title, description, activeNav, noindex = false } = Astro.props;
+const canonical =
+  Astro.site && !noindex ? new URL(Astro.url.pathname, Astro.site) : undefined;
+const socialImage = canonical
+  ? new URL(imageAsset('works/work-09.jpg').src, canonical)
+  : undefined;
 ---
 
 <!doctype html>
@@ -19,21 +25,28 @@ const { title, description, activeNav } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
+    {noindex && <meta name="robots" content="noindex" />}
+    {
+      canonical && (
+        <>
+          <link rel="canonical" href={canonical.href} />
+          <meta property="og:type" content="website" />
+          <meta property="og:locale" content="ru_RU" />
+          <meta property="og:site_name" content="Классика-АГ" />
+          <meta property="og:title" content={title} />
+          <meta property="og:description" content={description} />
+          <meta property="og:url" content={canonical.href} />
+          <meta property="og:image" content={socialImage?.href} />
+        </>
+      )
+    }
+    <Font cssVariable="--font-golos" preload />
+    <slot name="head" />
   </head>
   <body>
     <a class="skip-link" href="#main">Перейти к содержанию</a>
     <Header activeNav={activeNav} />
     <main id="main"><slot /></main>
     <Footer />
-    <Lightbox />
-    <script>
-      import '../scripts/main.js';
-    </script>
   </body>
 </html>

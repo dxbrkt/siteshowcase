@@ -1,0 +1,147 @@
+---
+import { SERVICES } from '../data/services';
+import {
+  DIRECTIONS,
+  connectPriceRow,
+  displayRate,
+  displayWorkName,
+} from '../data/pricing-directions';
+import { withBase } from '../lib/urls';
+
+const catalog = SERVICES.map((service) => {
+  const label =
+    DIRECTIONS.find((direction) => direction.slug === service.slug)?.label ??
+    service.title;
+  const filterByObject = service.slug === 'uborka-pomeshenij';
+  const rows = service.prices.map(([name, unit, price]) => {
+    const match = connectPriceRow(service.slug, name, unit, price);
+    return {
+      name: match?.item.rental
+        ? `Аренда ковра ${match.item.label}`
+        : filterByObject && match
+          ? match.item.label
+          : displayWorkName(name),
+      rate: displayRate(price, unit, match?.item.rental),
+      object: filterByObject ? match?.group : undefined,
+      item: match?.item,
+    };
+  });
+  return {
+    ...service,
+    label,
+    rows,
+    objects: [
+      ...new Set(rows.flatMap((row) => (row.object ? [row.object] : []))),
+    ],
+  };
+});
+---
+
+<section
+  class="prices-catalog prices-shell"
+  id="prices"
+  aria-label="Прайс-лист"
+>
+  <nav class="prices-directions" aria-label="Направления услуг">
+    <ul>
+      {
+        catalog.map(({ slug, label }) => (
+          <li>
+            <a href={`#price-${slug}`} data-price-link>
+              {label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+
+  <div class="prices-picker" hidden>
+    <label for="priceDirection">Направление</label>
+    <select id="priceDirection">
+      {
+        catalog.map(({ slug, label }) => (
+          <option value={`price-${slug}`}>{label}</option>
+        ))
+      }
+    </select>
+  </div>
+
+  <div class="prices-panels">
+    {
+      catalog.map(({ slug, label, rows, objects }) => (
+        <article class="prices-panel" id={`price-${slug}`} data-price-panel>
+          <div class="prices-panel__head">
+            <h2>{label}</h2>
+            <a class="prices-text-link" href={withBase(`/uslugi/${slug}/`)}>
+              Об услуге <span aria-hidden="true">→</span>
+            </a>
+          </div>
+
+          {objects.length > 0 && (
+            <div class="prices-object" hidden>
+              <label for="priceObject">Тип объекта</label>
+              <select id="priceObject" data-price-object>
+                {objects.map((object) => (
+                  <option>{object}</option>
+                ))}
+                <option value="">Все объекты</option>
+              </select>
+            </div>
+          )}
+
+          <table class="prices-table" aria-label={`Расценки — ${label}`}>
+            <thead>
+              <tr>
+                <th scope="col">Работа</th>
+                <th scope="col">Тариф</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map(({ name, rate, object, item }) => (
+                <tr data-price-type={object}>
+                  <th scope="row">
+                    <span>{name}</span>
+                    {object && <small data-object-name>{object}</small>}
+                  </th>
+                  <td>
+                    <span class="prices-table__rate">{rate}</span>
+                    {item && (
+                      <a
+                        class="prices-text-link"
+                        href="#calculator"
+                        data-estimate-item={item.id}
+                        aria-label={`Рассчитать «${name}»`}
+                        hidden
+                      >
+                        Рассчитать <span aria-hidden="true">→</span>
+                      </a>
+                    )}
+                    {slug === 'ekspluataciya-zdanij' && (
+                      <a
+                        class="prices-text-link"
+                        href={withBase(
+                          '/kontakty/?service=free-estimate#estimate',
+                        )}
+                      >
+                        Оставить заявку <span aria-hidden="true">→</span>
+                      </a>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <p class="prices-note">
+            Тарифы ориентировочные. Точную стоимость уточнит специалист.
+          </p>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<script>
+  import { initPriceCatalog } from '../scripts/price-catalog';
+  initPriceCatalog();
+</script>

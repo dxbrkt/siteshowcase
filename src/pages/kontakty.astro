@@ -1,13 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { withBase } from '../lib/urls';
 import Icon from '../components/Icon.astro';
 import { SERVICES } from '../data/services';
+import { office, officeMapUrl, officeMapEmbedUrl } from '../data/office';
 ---
 
 <BaseLayout
   title={'Контакты | Классика-АГ'}
-  description={'Контакты клининговой компании ООО «Классика-АГ» в Москве: +7 (495) 933-74-96, info@classicag.ru, ул. Вольная, д. 39, стр. 8 и Алтуфьевское шоссе, д. 44.'}
+  description={`Контакты клининговой компании ООО «Классика-АГ»: +7 (495) 933-74-96, info@classicag.ru, ${office.city}, ${office.street}.`}
   activeNav={'kontakty'}
 >
   <div class="page-header">
@@ -132,10 +132,11 @@ import { SERVICES } from '../data/services';
             ><span class="svg-icon"><Icon name="pin" /></span></span
           >
           <div>
-            <strong>Адреса офисов в Москве</strong>
+            <strong>Адрес офиса</strong>
             <span>
-              105187, ул. Вольная, д. 39, стр. 8, эт. 4<br /><br />
-              127566, Алтуфьевское шоссе, д. 44,<br />БЦ «АЛЬТЕЗА»
+              {office.postalCode}, {office.city}, {office.street}<br />{
+                office.building
+              }
             </span>
           </div>
         </div>
@@ -165,16 +166,44 @@ import { SERVICES } from '../data/services';
           </div>
         </div>
 
-        <div class="contact-sidebar__photo">
-          <img
-            src={withBase('/assets/images/office-building.jpg')}
-            alt="Здание центрального офиса Классика-АГ на ул. Вольная, д. 39, стр. 8"
-          />
+        <div class="office-map">
+          <iframe
+            src={officeMapEmbedUrl}
+            title={`Карта проезда: ${office.city}, ${office.street}`}
+            loading="lazy"></iframe>
+          <a href={officeMapUrl} target="_blank" rel="noopener noreferrer">
+            Открыть в Яндекс Картах <span aria-hidden="true">↗</span>
+          </a>
         </div>
       </aside>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .office-map {
+    display: grid;
+    gap: 8px;
+  }
+
+  .office-map iframe {
+    display: block;
+    width: 100%;
+    height: clamp(240px, 30vw, 320px);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    background: var(--color-bg-alt);
+  }
+
+  .office-map a {
+    justify-self: start;
+    padding-block: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
+</style>
 
 <script>
   import { initContactForm } from '../scripts/contact-form';

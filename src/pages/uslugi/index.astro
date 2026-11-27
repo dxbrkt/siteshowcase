@@ -1,4 +1,6 @@
 ---
+import ResponsiveImage from '../../components/ResponsiveImage.astro';
+import { fullWidthImageWidths, halfWidthImageSizes } from '../../lib/images';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { withBase } from '../../lib/urls';
 import FinalCta from '../../components/FinalCta.astro';
@@ -13,8 +15,11 @@ import { SHORT_LABELS } from '../../data/service-labels';
   activeNav={'uslugi'}
 >
   <div class="page-header page-header--photo">
-    <img
-      src={withBase('/assets/images/works/work-09.jpg')}
+    <ResponsiveImage
+      src="works/work-09.jpg"
+      sizes="100vw"
+      widths={fullWidthImageWidths}
+      priority
       alt=""
       class="page-header__bg"
     />
@@ -52,7 +57,11 @@ import { SHORT_LABELS } from '../../data/service-labels';
         >
           <div class="service-detail__inner">
             <div class="fade-up service-detail__image-wrap">
-              <img src={withBase(s.cardImage)} alt={s.title} />
+              <ResponsiveImage
+                src={s.cardImage}
+                sizes={halfWidthImageSizes}
+                alt={s.title}
+              />
             </div>
             <div class="fade-up service-detail__content">
               <span class="service-detail__price">{s.minPrice}</span>
@@ -95,5 +104,5 @@ import { SHORT_LABELS } from '../../data/service-labels';
     ))
   }
 
-  <FinalCta photoSrc={'/assets/images/works/work-08.jpg'} />
+  <FinalCta photoSrc={'works/work-08.jpg'} />
 </BaseLayout>

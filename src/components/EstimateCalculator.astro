@@ -1,0 +1,131 @@
+---
+import { CALCULATOR_DIRECTIONS } from '../data/pricing-directions';
+import { withBase } from '../lib/urls';
+
+const estimateUrl = withBase('/kontakty/?service=free-estimate#estimate');
+---
+
+<section class="estimate" id="calculator" aria-labelledby="estimateHeading">
+  <div class="prices-shell">
+    <h2 id="estimateHeading">Рассчитать смету</h2>
+    <noscript>
+      <p>
+        Для онлайн-расчёта включите JavaScript или <a
+          class="prices-text-link"
+          href={estimateUrl}>обратитесь к специалисту</a
+        >.
+      </p>
+    </noscript>
+    <div class="estimate-layout" hidden>
+      <form id="estimateForm">
+        <div class="estimate-fields">
+          <div class="estimate-field">
+            <label for="estimateDirection">Направление</label>
+            <select id="estimateDirection" required>
+              <option value="" selected disabled>Выберите направление</option>
+              {
+                CALCULATOR_DIRECTIONS.map(({ slug, label }) => (
+                  <option value={slug}>{label}</option>
+                ))
+              }
+            </select>
+          </div>
+          <div class="estimate-field" hidden>
+            <label for="estimateGroup" id="estimateGroupLabel">Раздел</label>
+            <select id="estimateGroup" disabled></select>
+          </div>
+          <div class="estimate-field" hidden>
+            <label for="estimateWork" id="estimateWorkLabel">Вид работ</label>
+            <select id="estimateWork" required disabled></select>
+          </div>
+          <div class="estimate-fields__details" id="estimateDetails" hidden>
+            <div class="estimate-field">
+              <label for="estimateQuantity" id="estimateQuantityLabel"
+                >Объём</label
+              >
+              <input
+                id="estimateQuantity"
+                type="number"
+                placeholder="0"
+                required
+                disabled
+              />
+            </div>
+            <div class="estimate-field" hidden>
+              <label for="estimateFrequency">Периодичность</label>
+              <select id="estimateFrequency" disabled>
+                <option value="1">Разово</option>
+                <option value="4">1 раз в неделю</option>
+                <option value="22">По будням</option>
+                <option value="30">Ежедневно</option>
+              </select>
+            </div>
+            <div class="estimate-field" hidden>
+              <label for="estimateSwaps">Замен в неделю</label>
+              <select id="estimateSwaps" disabled>
+                <option value="1">1 раз</option>
+                <option value="2" selected>2 раза</option>
+                <option value="3">3 раза</option>
+                <option value="5">5 раз</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="estimate-form-footer" id="estimateFormFooter" hidden>
+          <div>
+            <p class="estimate-rate" id="estimateRate"></p>
+            <output
+              class="estimate-preview"
+              id="estimatePreview"
+              for="estimateWork estimateQuantity estimateFrequency estimateSwaps"
+            ></output>
+          </div>
+          <button type="submit" class="button button--cta"
+            >Добавить в смету</button
+          >
+        </div>
+
+        <a
+          class="prices-text-link estimate-mobile-link"
+          id="estimateMobileLink"
+          href="#estimate-summary"
+          hidden></a>
+        <p class="prices-visually-hidden" id="estimateStatus" role="status"></p>
+      </form>
+
+      <aside
+        class="estimate-sheet"
+        id="estimate-summary"
+        aria-labelledby="estimateSummaryHeading"
+        tabindex="-1"
+      >
+        <div class="estimate-sheet__head">
+          <h3 id="estimateSummaryHeading">Предварительная смета</h3>
+          <button type="button" class="estimate-clear" id="estimateClear" hidden
+            >Очистить</button
+          >
+        </div>
+        <p class="estimate-empty" id="estimateEmpty">
+          Добавьте первую работу, чтобы собрать смету.
+        </p>
+        <ul class="estimate-items" id="estimateItems" hidden></ul>
+        <dl class="estimate-totals" id="estimateTotals" hidden></dl>
+        <a
+          class="button button--cta"
+          href={estimateUrl}
+          id="estimateSend"
+          hidden>Перейти к заявке</a
+        >
+        <p class="prices-note" id="estimateNote" hidden>
+          Расчёт ориентировочный. Смета подставится в форму для менеджера.
+        </p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { initCalculator } from '../scripts/calculator';
+  initCalculator();
+</script>

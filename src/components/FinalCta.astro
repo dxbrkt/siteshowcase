@@ -1,12 +1,13 @@
 ---
+import ResponsiveImage from './ResponsiveImage.astro';
+import { halfWidthImageSizes } from '../lib/images';
 import { withBase } from '../lib/urls';
 import Icon from '../components/Icon.astro';
 interface Props {
   photoSrc?: string;
   serviceQuery?: string;
 }
-const { photoSrc = '/assets/images/works/work-04.jpg', serviceQuery = '' } =
-  Astro.props;
+const { photoSrc = 'works/work-04.jpg', serviceQuery = '' } = Astro.props;
 const contactHref = serviceQuery
   ? `/kontakty/?service=${encodeURIComponent(serviceQuery)}#estimate`
   : '/kontakty/#estimate';
@@ -15,11 +16,10 @@ const contactHref = serviceQuery
 <section class="final-cta">
   <div class="final-cta__inner fade-up">
     <div class="final-cta__image-wrap">
-      <img
-        src={withBase(photoSrc)}
+      <ResponsiveImage
+        src={photoSrc}
+        sizes={halfWidthImageSizes}
         alt="Профессиональная уборка объектов Классика-АГ"
-        loading="lazy"
-        decoding="async"
       />
     </div>
     <div class="final-cta__content">

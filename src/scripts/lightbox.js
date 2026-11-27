@@ -1,90 +1,85 @@
 export function initLightbox() {
-  const lb = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lightboxImg');
-  const lbCap = document.getElementById('lightboxCaption');
-  const lbClose = document.getElementById('lightboxClose');
-  const lbPrev = document.getElementById('lightboxPrev');
-  const lbNext = document.getElementById('lightboxNext');
+  const dialog = document.getElementById('lightbox');
+  const image = document.getElementById('lightboxImg');
+  const caption = document.getElementById('lightboxCaption');
+  const closeButton = document.getElementById('lightboxClose');
+  const previous = document.getElementById('lightboxPrev');
+  const next = document.getElementById('lightboxNext');
+  const triggers = [...document.querySelectorAll('.js-lightbox-item')];
 
-  const triggers = Array.from(document.querySelectorAll('.js-lightbox-item'));
-  let lbIndex = -1;
+  if (
+    !(dialog instanceof HTMLDialogElement) ||
+    !image ||
+    !caption ||
+    !triggers.length
+  )
+    return;
 
-  function visibleItems() {
-    return triggers.filter(
-      (el, index) =>
-        !el.hidden &&
-        triggers.findIndex(
-          (item) =>
-            item.getAttribute('data-src') === el.getAttribute('data-src'),
-        ) === index,
-    );
+  let items = [];
+  let index = 0;
+  let opener;
+  let originalOverflow;
+
+  function showImage(nextIndex) {
+    index = (nextIndex + items.length) % items.length;
+    const { src, caption: description = '' } = items[index].dataset;
+    image.src = src;
+    image.alt = description;
+    caption.textContent = description;
   }
 
-  function openLbAt(i) {
-    const vis = visibleItems();
-    if (!lb || !lbImg || !vis.length) return;
-    lbIndex = (i + vis.length) % vis.length;
-    const item = vis[lbIndex];
-    lbImg.src = item.getAttribute('data-src') || '';
-    lbImg.alt = item.getAttribute('data-caption') || '';
-    if (lbCap) lbCap.textContent = item.getAttribute('data-caption') || '';
-    lb.hidden = false;
-    lb.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
+  triggers.forEach((trigger) => {
+    trigger.addEventListener('click', (event) => {
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)
+        return;
+      const source = trigger.dataset.src;
+      if (!source) return;
 
-  function closeLb() {
-    if (!lb) return;
-    lb.hidden = true;
-    lb.setAttribute('aria-hidden', 'true');
-    if (lbImg) lbImg.src = '';
-    document.body.style.overflow = '';
-  }
+      const seen = new Set();
+      items = triggers.filter((item) => {
+        const src = item.dataset.src;
+        if (!src || seen.has(src) || item.closest('[hidden]')) return false;
+        seen.add(src);
+        return true;
+      });
 
-  triggers.forEach((el) => {
-    el.addEventListener('click', (event) => {
-      event.preventDefault();
-      const vis = visibleItems();
-      openLbAt(
-        Math.max(
-          0,
-          vis.findIndex(
-            (item) =>
-              item.getAttribute('data-src') === el.getAttribute('data-src'),
-          ),
-        ),
+      const selectedIndex = items.findIndex(
+        (item) => item.dataset.src === source,
       );
+      if (selectedIndex < 0) return;
+      event.preventDefault();
+      opener = trigger;
+      showImage(selectedIndex);
+      originalOverflow = document.body.style.overflow;
+      dialog.showModal();
+      document.body.style.overflow = 'hidden';
     });
-    el.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        el.click();
-      }
-    });
+
+    if (trigger.getAttribute('role') === 'button') {
+      trigger.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+        event.preventDefault();
+        trigger.click();
+      });
+    }
   });
 
-  if (lbClose) lbClose.addEventListener('click', closeLb);
-  if (lbPrev)
-    lbPrev.addEventListener('click', (e) => {
-      e.stopPropagation();
-      openLbAt(lbIndex - 1);
-    });
-  if (lbNext)
-    lbNext.addEventListener('click', (e) => {
-      e.stopPropagation();
-      openLbAt(lbIndex + 1);
-    });
-  if (lb)
-    lb.addEventListener('click', (e) => {
-      if (e.target === lb) closeLb();
-    });
+  closeButton?.addEventListener('click', () => dialog.close());
+  previous?.addEventListener('click', () => showImage(index - 1));
+  next?.addEventListener('click', () => showImage(index + 1));
 
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      if (lb && !lb.hidden) closeLb();
-    } else if (lb && !lb.hidden) {
-      if (e.key === 'ArrowLeft') openLbAt(lbIndex - 1);
-      if (e.key === 'ArrowRight') openLbAt(lbIndex + 1);
-    }
+  dialog.addEventListener('click', (event) => {
+    if (event.target === dialog) dialog.close();
+  });
+
+  dialog.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') showImage(index - 1);
+    if (event.key === 'ArrowRight') showImage(index + 1);
+  });
+
+  dialog.addEventListener('close', () => {
+    image.removeAttribute('src');
+    document.body.style.overflow = originalOverflow;
+    opener?.focus();
   });
 }

@@ -1,4 +1,6 @@
 ---
+import ResponsiveImage from '../components/ResponsiveImage.astro';
+import { fullWidthImageWidths, halfWidthImageSizes } from '../lib/images';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { withBase } from '../lib/urls';
 import FinalCta from '../components/FinalCta.astro';
@@ -10,8 +12,11 @@ import FinalCta from '../components/FinalCta.astro';
   activeNav={'o-kompanii'}
 >
   <div class="page-header page-header--photo">
-    <img
-      src={withBase('/assets/images/team-banner.jpg')}
+    <ResponsiveImage
+      src="team-banner.jpg"
+      sizes="100vw"
+      widths={fullWidthImageWidths}
+      priority
       alt=""
       class="page-header__bg"
     />
@@ -45,8 +50,9 @@ import FinalCta from '../components/FinalCta.astro';
           </p>
         </div>
         <div class="about-story__image">
-          <img
-            src={withBase('/assets/images/works/work-08.jpg')}
+          <ResponsiveImage
+            src="works/work-08.jpg"
+            sizes={halfWidthImageSizes}
             alt="Мобильная бригада и транспорт Классика-АГ"
           />
         </div>
@@ -168,5 +174,5 @@ import FinalCta from '../components/FinalCta.astro';
     </div>
   </section>
 
-  <FinalCta photoSrc={'/assets/images/works/work-05.jpg'} />
+  <FinalCta photoSrc={'works/work-05.jpg'} />
 </BaseLayout>

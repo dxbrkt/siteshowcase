@@ -1,4 +1,6 @@
 ---
+import ResponsiveImage from './ResponsiveImage.astro';
+import { imageAsset } from '../lib/images';
 import { REVIEWS } from '../data/reviews';
 import { withBase } from '../lib/urls';
 import '../styles/client-stories.css';
@@ -44,13 +46,18 @@ import '../styles/client-stories.css';
             </div>
             <a
               class="client-story__document js-lightbox-item"
-              href={withBase(review.src)}
-              data-src={withBase(review.src)}
+              href={imageAsset(review.src).src}
+              data-src={imageAsset(review.src).src}
               data-caption={`${review.org} — благодарственное письмо`}
               aria-label={`Читать письмо: ${review.org}`}
             >
               <span class="client-story__paper">
-                <img src={withBase(review.src)} alt="" loading="lazy" />
+                <ResponsiveImage
+                  src={review.src}
+                  alt=""
+                  sizes="30px"
+                  widths={[32, 64, 96]}
+                />
               </span>
               <>
                 <span>

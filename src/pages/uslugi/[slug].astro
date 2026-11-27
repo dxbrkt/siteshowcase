@@ -1,4 +1,12 @@
 ---
+import ResponsiveImage from '../../components/ResponsiveImage.astro';
+import {
+  imageAsset,
+  fullWidthImageWidths,
+  halfWidthImageSizes,
+  gridImageSizes,
+} from '../../lib/images';
+import Lightbox from '../../components/Lightbox.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { withBase } from '../../lib/urls';
 import FinalCta from '../../components/FinalCta.astro';
@@ -25,7 +33,14 @@ const related = SERVICES.filter((s) => s.slug !== service.slug).slice(0, 3);
   activeNav={'uslugi'}
 >
   <div class="page-header page-header--photo">
-    <img src={withBase(service.heroImage)} alt="" class="page-header__bg" />
+    <ResponsiveImage
+      src={service.heroImage}
+      sizes="100vw"
+      widths={fullWidthImageWidths}
+      priority
+      alt=""
+      class="page-header__bg"
+    />
     <div class="page-header__overlay"></div>
     <div class="page-header__inner">
       <div class="page-header__crumb">
@@ -83,7 +98,11 @@ const related = SERVICES.filter((s) => s.slug !== service.slug).slice(0, 3);
         </div>
       </div>
       <div class="fade-up service-detail__image-wrap">
-        <img src={withBase(service.cardImage)} alt={service.title} />
+        <ResponsiveImage
+          src={service.cardImage}
+          sizes={halfWidthImageSizes}
+          alt={service.title}
+        />
       </div>
     </div>
   </section>
@@ -173,13 +192,17 @@ const related = SERVICES.filter((s) => s.slug !== service.slug).slice(0, 3);
             <>
               <figure
                 class="photo-card js-lightbox-item"
-                data-src={withBase(img.src)}
+                data-src={imageAsset(img.src).src}
                 data-caption={img.caption}
                 tabindex="0"
                 role="button"
               >
                 <div class="photo-card__img">
-                  <img src={withBase(img.src)} alt={img.caption} />
+                  <ResponsiveImage
+                    src={img.src}
+                    sizes={gridImageSizes}
+                    alt={img.caption}
+                  />
                 </div>
                 <figcaption class="photo-card__cap">
                   <span>{img.caption}</span>
@@ -205,4 +228,5 @@ const related = SERVICES.filter((s) => s.slug !== service.slug).slice(0, 3);
   </section>
 
   <FinalCta photoSrc={service.heroImage} serviceQuery={service.slug} />
+  <Lightbox />
 </BaseLayout>

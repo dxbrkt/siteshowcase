@@ -1,12 +1,17 @@
 ---
 import { withBase } from '../lib/urls';
 import BrandLogo from '../components/BrandLogo.astro';
+import { office } from '../data/office';
 ---
 
 <footer class="footer">
   <div class="footer__inner">
     <div class="footer__col footer__col--brand">
-      <a class="footer__brand" aria-label="Классика-АГ — на главную" href={withBase('/')}>
+      <a
+        class="footer__brand"
+        aria-label="Классика-АГ — на главную"
+        href={withBase('/')}
+      >
         <BrandLogo dark />
       </a>
       <p class="footer__tagline">
@@ -115,8 +120,7 @@ import BrandLogo from '../components/BrandLogo.astro';
             >info@classicag.ru</a
           >
         </li>
-        <li>Москва, ул. Вольная, д. 39, стр. 8</li>
-        <li>Алтуфьевское ш., д. 44, БЦ «АЛЬТЕЗА»</li>
+        <li>{office.city}, {office.street}, {office.building}</li>
         <li class="footer__hours">
           Офис: Пн–Пт 09:00–18:00<br />Бригады: 24/7
         </li>

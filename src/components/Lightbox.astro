@@ -1,17 +1,13 @@
-<!-- Lightbox -->
-<div
-  class="lightbox"
-  id="lightbox"
-  hidden
-  aria-hidden="true"
-  role="dialog"
-  aria-modal="true"
-  aria-label="Просмотр изображения"
->
+---
+import '../styles/lightbox.css';
+---
+
+<dialog class="lightbox" id="lightbox" aria-label="Просмотр изображения">
   <button
     type="button"
     class="lightbox__close"
     id="lightboxClose"
+    autofocus
     aria-label="Закрыть">&times;</button
   >
   <button
@@ -21,7 +17,7 @@
     aria-label="Назад">&#8592;</button
   >
   <figure class="lightbox__figure">
-    <img src="" alt="" id="lightboxImg" class="lightbox__img" />
+    <img alt="" id="lightboxImg" class="lightbox__img" />
     <figcaption id="lightboxCaption" class="lightbox__caption"></figcaption>
   </figure>
   <button
@@ -30,4 +26,9 @@
     id="lightboxNext"
     aria-label="Вперёд">&#8594;</button
   >
-</div>
+</dialog>
+
+<script>
+  import { initLightbox } from '../scripts/lightbox';
+  initLightbox();
+</script>

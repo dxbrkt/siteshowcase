@@ -1,5 +1,6 @@
 /* Client letters: original excerpts with their source documents. */
 .client-stories {
+  font-family: Arial, Helvetica, sans-serif;
   background: #f3f4ee;
   padding: 80px 32px 56px;
 }
@@ -14,19 +15,12 @@
   gap: 30px;
   margin-bottom: 36px;
 }
-.client-stories__eyebrow {
-  display: block;
-  margin-bottom: 16px;
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: #617455;
-}
 .client-stories__heading h2 {
-  font-size: clamp(30px, 3.3vw, 44px);
+  font-family: inherit;
+  font-size: clamp(28px, 2.7vw, 36px);
   font-weight: 500;
-  letter-spacing: -1.3px;
-  line-height: 1.12;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
 }
 .client-stories__heading > p {
   font-size: 13px;
@@ -48,26 +42,6 @@
   border: 1px solid #e0e4d8;
   border-radius: 10px;
   overflow: hidden;
-}
-.client-story__top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 30px;
-  gap: 10px;
-  margin-bottom: 22px;
-}
-.client-story__number {
-  color: #7a8275;
-  font-size: 10px;
-  letter-spacing: 0.4px;
-}
-.client-story__quote {
-  color: #7f9a62;
-  font-family: Georgia, serif;
-  font-size: 54px;
-  line-height: 0.7;
-  transform: translateY(10px);
 }
 .client-story blockquote {
   margin: 0 0 32px;

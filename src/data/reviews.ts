@@ -1,6 +1,6 @@
 export const REVIEWS = [
   {
-    src: '/assets/images/verified/d1e2799aea53b4ea.jpg',
+    src: 'verified/d1e2799aea53b4ea.jpg',
     org: 'АО «Оборонэнерго»',
     role: 'Сервис грязезащитных ковров',
     quote:
@@ -9,7 +9,7 @@ export const REVIEWS = [
     logo: '/assets/images/clients/oboronenergo.svg',
   },
   {
-    src: '/assets/images/verified/486148bdd3e9924c.jpg',
+    src: 'verified/486148bdd3e9924c.jpg',
     org: 'ООО «СЭУ ФС-6»',
     role: 'Уборка помещений и территории',
     quote:
@@ -18,7 +18,7 @@ export const REVIEWS = [
     logo: '/assets/images/clients/seu-fs6.png',
   },
   {
-    src: '/assets/images/verified/a003a2812dfda0d0.jpg',
+    src: 'verified/a003a2812dfda0d0.jpg',
     org: 'АО «Центр программ лояльности»',
     role: 'Комплексная уборка помещений',
     quote:
